@@ -13,7 +13,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import 'semantic-ui-css/semantic.min.css'
 
-import App from './routes'
+// import App from './routes'
 
 const middlewares = [ reduxThunk, logger ]
 const enhancers = applyMiddleware(...middlewares)
