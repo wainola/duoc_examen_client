@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import GoogleLogin from 'react-google-login';
+import { connect } from 'react-redux'
+import { bindActionCreatros } from 'redux'
 import {
   Responsive,
   Container,
@@ -8,6 +10,8 @@ import {
   Button,
   Segment
 } from 'semantic-ui-react'
+
+import { successGoogleLogin, failGoogleLogin, localLogin } from '../../actions/index'
 
 export class Home extends Component {
   onChange = e => {
