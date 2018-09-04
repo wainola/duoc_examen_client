@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import GoogleLogin from 'react-google-login';
 import { connect } from 'react-redux'
-import { bindActionCreatros } from 'redux'
+import { bindActionCreators } from 'redux'
 import {
   Responsive,
   Container,
@@ -14,6 +14,9 @@ import {
 import { successGoogleLogin, failGoogleLogin, localLogin } from '../../actions/index'
 
 export class Home extends Component {
+  componentWillReceiveProps(nextProps){
+    console.log('nextProps', nextProps)
+  }
   onChange = e => {
     e.preventDefault()
   }
@@ -22,11 +25,15 @@ export class Home extends Component {
   }
   responseGoogle = response => {
     console.log('response', response)
+    if(response.profileObj){
+      this.props.successGoogleLogin()
+    }
   }
   failureGoogle = response => {
 
   }
   render() {
+    console.log('this.props', this.props)
     const { REACT_APP_GOOGLE_CLIENT_ID } = process.env
     return (
       <div>
@@ -43,7 +50,7 @@ export class Home extends Component {
                         <Form.Input fluid label='Contraseña' placeholder='ingrese su contraseña' onChange={this.onChange}/>
                       </Form.Field>
                       <Form.Field>
-                        <Button color='green'>Ingresar</Button>
+                        <Button color='green' onClick={() => this.responseGoogle({a: 'b'})}>Ingresar</Button>
                       </Form.Field>
                       <Form.Field>
                       <GoogleLogin
@@ -64,4 +71,12 @@ export class Home extends Component {
   }
 }
 
-export default Home
+function mapStateToProps({ google }){
+  return { google }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ successGoogleLogin, failGoogleLogin, localLogin }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

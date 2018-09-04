@@ -11,6 +11,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import Api from './api'
 import registerServiceWorker from './registerServiceWorker';
 
+import { successGoogleLogin } from './actions/index'
+
 import 'semantic-ui-css/semantic.min.css'
 
 // import App from './routes'
@@ -19,6 +21,10 @@ const middlewares = [ reduxThunk, logger ]
 const enhancers = applyMiddleware(...middlewares)
 const store = createStore(rootReducer, composeWithDevTools(enhancers))
 
+console.log('store', store)
+store.dispatch(successGoogleLogin()).then(() => {
+    console.log('store state', store.getState('google'))
+})
 
 ReactDOM.render(
     <BrowserRouter>

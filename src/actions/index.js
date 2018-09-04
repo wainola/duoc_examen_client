@@ -16,6 +16,10 @@ export const failGoogleLogin = payload => {
   payload
 }
 
+export const sendAuthTrueToBackend = bool => dispatch => {
+  return API.sendAuthTrueToBackend(bool)
+}
+
 export const localLogin = credentials => dispatch => {
   return API.login(credentials)
 }
