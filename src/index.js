@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Router from './Router/index'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -23,7 +23,7 @@ const store = createStore(rootReducer, composeWithDevTools(enhancers))
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
-            <Route component={App} />
+            <Route component={Router} />
         </Provider>
     </BrowserRouter>, document.getElementById('root'));
 registerServiceWorker();
