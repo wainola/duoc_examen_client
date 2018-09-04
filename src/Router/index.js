@@ -11,7 +11,8 @@ import {
   Icon
 } from 'semantic-ui-react'
 
-import Navbar from './components/Navbar'
+import Navbar from '../components/Navbar'
+import Home from '../containers/Home/Home'
 
 export class Router extends Component {
   constructor(props){
@@ -44,6 +45,7 @@ export class Router extends Component {
           </Sidebar>
           <Sidebar.Pusher>
             <Navbar visible={visible} handleVisible={this.handleVisible}/>
+            <Home />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
 </div>
