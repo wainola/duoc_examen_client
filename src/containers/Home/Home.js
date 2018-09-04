@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import GoogleLogin from 'react-google-login';
 import {
   Responsive,
   Container,
@@ -15,7 +16,14 @@ export class Home extends Component {
   onSubmit = e => {
     e.preventDefault()
   }
+  responseGoogle = response => {
+    console.log('response', response)
+  }
+  failureGoogle = response => {
+
+  }
   render() {
+    const { REACT_APP_GOOGLE_CLIENT_ID } = process.env
     return (
       <div>
         <Responsive>
@@ -32,6 +40,14 @@ export class Home extends Component {
                       </Form.Field>
                       <Form.Field>
                         <Button color='green'>Ingresar</Button>
+                      </Form.Field>
+                      <Form.Field>
+                      <GoogleLogin
+                        clientId={`${REACT_APP_GOOGLE_CLIENT_ID}`}
+                        buttonText="Ingrese con google"
+                        onSuccess={this.responseGoogle}
+                        onFailure={this.failureGoogle}
+                      />
                       </Form.Field>
                     </Form>
                   </Segment>
