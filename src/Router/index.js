@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import AuthRoute from './AuthRoute/AuthRoute'
 import GuestRoute from './GuestRoute/GuestRoute'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Link, Router as Route } from 'react-router-dom'
 import {
   Grid,
   Container,
@@ -13,6 +14,7 @@ import {
 
 import Navbar from '../components/Navbar'
 import Home from '../containers/Home/Home'
+import Dashboard from '../containers/Dashboard/Dashboard'
 
 export class Router extends Component {
   constructor(props){
@@ -45,12 +47,17 @@ export class Router extends Component {
           </Sidebar>
           <Sidebar.Pusher>
             <Navbar visible={visible} handleVisible={this.handleVisible}/>
-            <Home />
+            <Home location={location} history={history} match={match} />
+            <Route location={location} history={history} match={match} path='/dashboard' component={Dashboard} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
 </div>
     )
   }
+}
+
+function mapStateToProps({ google }){
+  return { google }
 }
 
 export default Router

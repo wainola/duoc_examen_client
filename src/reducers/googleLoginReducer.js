@@ -10,7 +10,6 @@ const initialState = {
 export default function(state = initialState, action){
   switch(action.type){
     case SUCCESS_GOOGLE_LOGIN:
-      console.log('success')
       return { ...state, google_auth: true }
     case FAIL_GOOGLE_LOGIN:
       return state

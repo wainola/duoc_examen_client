@@ -14,19 +14,33 @@ import {
 import { successGoogleLogin, failGoogleLogin, localLogin } from '../../actions/index'
 
 export class Home extends Component {
-  componentWillReceiveProps(nextProps){
-    console.log('nextProps', nextProps)
+  constructor(){
+    super()
+    this.state = {
+      credentials: {
+        rut: '',
+        password: ''
+      }
+    }
   }
   onChange = e => {
     e.preventDefault()
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    })
   }
   onSubmit = e => {
     e.preventDefault()
+    if(this.state.credentials.rut !== '' && this.state.credentials.password !== ''){
+      this.props.localLogin(this.state.credentials)
+    }
   }
   responseGoogle = response => {
-    console.log('response', response)
     if(response.profileObj){
-      this.props.successGoogleLogin()
+      this.props.successGoogleLogin(true)
     }
   }
   failureGoogle = response => {
@@ -34,6 +48,9 @@ export class Home extends Component {
   }
   render() {
     console.log('this.props', this.props)
+    if(this.props.google.google_auth){
+      this.props.history.push('/dashboard')
+    }
     const { REACT_APP_GOOGLE_CLIENT_ID } = process.env
     return (
       <div>
@@ -44,10 +61,10 @@ export class Home extends Component {
                   <Segment raised>
                     <Form onSubmit={this.onSubmit}>
                       <Form.Field>
-                        <Form.Input fluid label='Rut' placeholder='ingrese su rut 11.111.111-7' onChange={this.onChange}/>
+                        <Form.Input fluid label='Rut' placeholder='ingrese su rut 11.111.111-7' onChange={this.onChange} name='rut'/>
                       </Form.Field>
                       <Form.Field>
-                        <Form.Input fluid label='Contraseña' placeholder='ingrese su contraseña' onChange={this.onChange}/>
+                        <Form.Input fluid label='Contraseña' placeholder='ingrese su contraseña' onChange={this.onChange} name='password'/>
                       </Form.Field>
                       <Form.Field>
                         <Button color='green' onClick={() => this.responseGoogle({a: 'b'})}>Ingresar</Button>
@@ -55,7 +72,7 @@ export class Home extends Component {
                       <Form.Field>
                       <GoogleLogin
                         clientId={`${REACT_APP_GOOGLE_CLIENT_ID}`}
-                        buttonText="Ingrese con google"
+                        buttonText="Ingrese con Google"
                         onSuccess={this.responseGoogle}
                         onFailure={this.failureGoogle}
                       />
