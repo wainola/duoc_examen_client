@@ -60,6 +60,7 @@ export class Home extends Component {
   }
   clickActionButtons = e => {
     e.preventDefault()
+    console.log('e.target.value', e.target.value)
   }
   render() {
     console.log('this.props home', this.props)

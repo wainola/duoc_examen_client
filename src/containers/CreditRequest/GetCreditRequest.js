@@ -1,11 +1,17 @@
 import React from 'react'
-import { Grid, Table, Button } from 'semantic-ui-react'
+import { Grid, Table, Button, Header } from 'semantic-ui-react'
 
 const GetCreditRequest = props => {
   console.log('props get credit', props)
   return (
     <div>
       <Grid verticalAlign='middle' textAlign='center' column='1'>
+        <Grid.Row>
+          <Grid.Column>
+            <Header as='h3'>Estado de solicitudes</Header>
+            <Button color='yellow' onClick={props.clickActionButtons} value='crear'>Crear solicitud de credito</Button>
+          </Grid.Column>
+        </Grid.Row>
         <Grid.Row>
           <Grid.Column>
             <Table celled selectable>
