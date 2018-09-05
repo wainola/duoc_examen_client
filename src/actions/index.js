@@ -13,6 +13,8 @@ export const GET_REQUEST = 'GET_REQUEST'
 export const GET_ALL_DATA = 'GET_ALL_DATA'
 export const FAIL_GET_ALL_DATA = 'FAIL_GET_ALL_DATA'
 
+export const SEND_DATA_TO_VIEW = 'SEND_DATA_TO_VIEW'
+
 export const successGoogleLogin = () => ({
   type: SUCCESS_GOOGLE_LOGIN
 })
@@ -35,4 +37,9 @@ export const getCreditData = () => dispatch => {
   return API.getCredits()
     .then(res => dispatch(gettingAllTheData({ data: res.data, status: res.status })))
     .catch(res => dispatch(failGettingAllTheData(res)))
+}
+
+export const sendDataToView = payload => {
+  type: SEND_DATA_TO_VIEW,
+  payload
 }

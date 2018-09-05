@@ -14,8 +14,9 @@ import {
 import GetCreditRequest from '../CreditRequest/GetCreditRequest'
 import CreateCreditRequest from '../CreateCreditRequest/CreateCreditRequest'
 import EditarCredit from '../EditCredit/EditCredit'
+import ViewRequest from '../ViewRequest/ViewRequest'
 
-import { successGoogleLogin, getCreditData } from '../../actions/index'
+import { successGoogleLogin, getCreditData, sendDataToView } from '../../actions/index'
 
 export class Home extends Component {
   constructor(){
@@ -28,8 +29,8 @@ export class Home extends Component {
       editar: false,
       ver: false,
       eliminar: false,
-      main: false,
-      crear: true
+      main: true,
+      crear: false
     }
   }
   componentWillMount(){
@@ -60,6 +61,7 @@ export class Home extends Component {
   }
   clickActionButtons = e => {
     e.preventDefault()
+    
     console.log('e.target.value', e.target.value)
     if(e.target.value === 'crear'){
       this.setState({
@@ -79,9 +81,19 @@ export class Home extends Component {
         ver: this.state.ver 
       })
     }
+    if(e.target.value === 'ver'){
+      this.setState({
+        crear: this.state.crear,
+        editar: this.state.editar,
+        main: !this.state.main,
+        eliminar: this.state.eliminar,
+        ver: !this.state.ver
+      })
+    }
   }
   render() {
     console.log('this.props home', this.props)
+    console.log('this.state', this.state)
     const { REACT_APP_GOOGLE_CLIENT_ID } = process.env
     const { google_auth } = this.props.google
     let creditData
@@ -122,7 +134,7 @@ export class Home extends Component {
             )}
             {
               google_auth && main && (
-                <GetCreditRequest creditData={creditData} clickActionButtons={this.clickActionButtons}/>
+                <GetCreditRequest creditData={creditData} clickActionButtons={this.clickActionButtons} triggerDataToView={this.triggerDataToView}/>
               )
             }
             {
@@ -133,6 +145,11 @@ export class Home extends Component {
             {
               editar && (
                 <EditarCredit clickActionButtons={this.clickActionButtons}/>
+              )
+            }
+            {
+              ver && (
+                <ViewRequest clickActionButtons={this.clickActionButtons} creditData={creditData}/>
               )
             }
           </Container>
@@ -147,7 +164,7 @@ function mapStateToProps({ google, credit }){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ successGoogleLogin, getCreditData }, dispatch)
+  return bindActionCreators({ successGoogleLogin, getCreditData, sendDataToView }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
