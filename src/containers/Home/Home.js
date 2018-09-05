@@ -63,11 +63,20 @@ export class Home extends Component {
     console.log('e.target.value', e.target.value)
     if(e.target.value === 'crear'){
       this.setState({
-        crear: true,
-        editar: false,
-        main: false,
-        eliminar: false,
-        ver: false
+        crear: !this.state.crear,
+        editar: this.state.editar,
+        main: !this.state.main,
+        eliminar: this.state.eliminar,
+        ver: this.state.ver
+      })
+    }
+    if(e.target.value === 'editar'){
+      this.setState({
+        crear: this.state.crear,
+        editar: !this.state.editar,
+        main: !this.state.main,
+        eliminar: this.state.eliminar,
+        ver: this.state.ver 
       })
     }
   }
@@ -118,12 +127,12 @@ export class Home extends Component {
             }
             {
               crear && (
-                <CreateCreditRequest />
+                <CreateCreditRequest clickActionButtons={this.clickActionButtons}/>
               )
             }
             {
               editar && (
-                <EditarCredit />
+                <EditarCredit clickActionButtons={this.clickActionButtons}/>
               )
             }
           </Container>

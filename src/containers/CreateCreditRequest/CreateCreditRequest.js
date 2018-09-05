@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { comunas } from './comunas'
 import { flattenDeep } from 'lodash'
 import CreditForm from './CreditForm'
+import { Button, Grid } from 'semantic-ui-react';
 
 const estadoCivil = [
   { key: 1, value: 'Soltero', text:'Soltero'},
@@ -37,6 +38,9 @@ const renta = [
 ]
 
 export class CreateCreditRequest extends Component {
+  constructor(props){
+    super(props)
+  }
   onChange = e => {
     e.preventDefault()
   }
@@ -64,6 +68,11 @@ export class CreateCreditRequest extends Component {
   render() {
     return (
       <div>
+        <Grid.Row>
+          <Grid.Column>
+            <Button color='facebook' value='crear' onClick={this.props.clickActionButtons}>Volver</Button>
+          </Grid.Column>
+        </Grid.Row>
         <CreditForm 
         renta={renta}
         educacion={educacion}
