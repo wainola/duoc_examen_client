@@ -28,8 +28,8 @@ export class Home extends Component {
       editar: false,
       ver: false,
       eliminar: false,
-      main: true,
-      crear: false
+      main: false,
+      crear: true
     }
   }
   componentWillMount(){
@@ -61,6 +61,15 @@ export class Home extends Component {
   clickActionButtons = e => {
     e.preventDefault()
     console.log('e.target.value', e.target.value)
+    if(e.target.value === 'crear'){
+      this.setState({
+        crear: true,
+        editar: false,
+        main: false,
+        eliminar: false,
+        ver: false
+      })
+    }
   }
   render() {
     console.log('this.props home', this.props)
