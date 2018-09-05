@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-export class Dashboard extends Component {
+export class EditCredit extends Component {
   render() {
     return (
       <div>
-        <h1>Dashboard</h1>
+        <h1>Edit Credit</h1>
       </div>
     )
   }
 }
 
-export default Dashboard
+export default EditCredit

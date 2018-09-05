@@ -4,7 +4,7 @@ import {
 } from '../actions/index'
 
 const initialState = {
-  google_auth: false
+  google_auth: true
 }
 
 export default function(state = initialState, action){

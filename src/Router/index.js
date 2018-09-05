@@ -27,8 +27,7 @@ export class Router extends Component {
     this.setState({ visible: !this.state.visible })
   }
   render() {
-    console.log('this.props', this.props)
-    const { location, match, history } = this.props
+    const { location, match, history, google: { google_auth} } = this.props
     const { visible } = this.state
     return (
       <div>
@@ -48,7 +47,6 @@ export class Router extends Component {
           <Sidebar.Pusher>
             <Navbar visible={visible} handleVisible={this.handleVisible}/>
             <Home location={location} history={history} match={match} />
-            <Route location={location} history={history} match={match} path='/dashboard' component={Dashboard} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
 </div>
@@ -60,4 +58,4 @@ function mapStateToProps({ google }){
   return { google }
 }
 
-export default Router
+export default connect(mapStateToProps)(Router)
