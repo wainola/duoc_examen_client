@@ -1,8 +1,7 @@
 import React from 'react'
-import { Form, Button, Header, Grid, Checkbox, Dropdown, Segment } from 'semantic-ui-react'
+import { Grid, Form, Table, Checkbox, Header, Dropdown } from 'semantic-ui-react'
 
-const CreditForm = props => {
-  const { renta, educacion, comunas, estadoCivil } = props
+const EditCreditView = () => {
   return (
     <div>
       <Grid>
@@ -10,7 +9,7 @@ const CreditForm = props => {
             <Grid.Column>
               <Segment raised>
                 <Form style={{ heigth: '1500px' }}>
-                  <Header as='h3'>Crear solicitud</Header>
+                  <Header as='h3'>Editar solicitud</Header>
                   <Form.Field>
                     <Form.Input type='text' placeholder='rut' label='Rut' name='rut' onChange={props.onChange}/>
                   </Form.Field>
@@ -97,4 +96,4 @@ const CreditForm = props => {
   )
 }
 
-export default CreditForm
+export default EditCreditView

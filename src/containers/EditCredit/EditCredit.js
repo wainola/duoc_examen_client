@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EditForm from './EditForm'
+import EditForm from './Components/EditForm'
 import { Grid, Button } from 'semantic-ui-react';
 
 export class EditCredit extends Component {

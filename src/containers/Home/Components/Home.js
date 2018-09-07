@@ -13,10 +13,10 @@ import {
 
 import GetCreditRequest from '../CreditRequest/GetCreditRequest'
 import CreateCreditRequest from '../CreateCreditRequest/CreateCreditRequest'
-import EditarCredit from '../EditCredit/EditCredit'
-import ViewRequest from '../ViewRequest/ViewRequest'
+import EditarCredit from '../../EditCredit/EditCredit'
+import ViewRequest from '../../ViewRequest/Views/ViewRequest'
 
-import { successGoogleLogin, getCreditData, sendDataToView } from '../../actions/index'
+import { successGoogleLogin, getCreditData, sendDataToView } from '../../../actions'
 
 export class Home extends Component {
   constructor(){

@@ -1,8 +1,7 @@
 import React from 'react'
-import { Grid, Table, Button, Header } from 'semantic-ui-react'
+import { Grid, Header, Button, Table } from 'semantic-ui-react'
 
-const GetCreditRequest = props => {
-  console.log('props get credit', props)
+const GetCreditRequestView = () => {
   return (
     <div>
       <Grid verticalAlign='middle' textAlign='center' column='1'>
@@ -57,4 +56,4 @@ const GetCreditRequest = props => {
   )
 }
 
-export default GetCreditRequest
+export default GetCreditRequestView

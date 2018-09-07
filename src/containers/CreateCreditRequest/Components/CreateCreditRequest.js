@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { comunas } from './comunas'
 import { flattenDeep } from 'lodash'
-import CreditForm from './CreditForm'
 import { Button, Grid } from 'semantic-ui-react';
+import CreateCreditView from '../Views/CreateCredit.view';
 
 const estadoCivil = [
   { key: 1, value: 'Soltero', text:'Soltero'},
@@ -73,20 +73,7 @@ export class CreateCreditRequest extends Component {
             <Button color='facebook' value='crear' onClick={this.props.clickActionButtons}>Volver</Button>
           </Grid.Column>
         </Grid.Row>
-        <CreditForm 
-        renta={renta}
-        educacion={educacion}
-        comunas={c}
-        estadoCivil={estadoCivil}
-        onChange={this.onChange}
-        handleSex={this.handleSex}
-        handleEstadoCivil={this.handleEstadoCivil}
-        handleHijos={this.handleHijos}
-        handleComunas={this.handleComunas}
-        handleEducacion={this.handleEducacion}
-        handleRenta={this.handleRenta}
-        handleEnfermedad={this.handleEnfermedad}
-        />
+        <CreateCreditView />
       </div>
     )
   }
