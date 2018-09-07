@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomeView = () => {
+const ViewRequestView = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const HomeView = () => {
   )
 }
 
-export default HomeView
+export default ViewRequestView
