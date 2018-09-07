@@ -19,7 +19,7 @@ const middlewares = [reduxThunk, logger]
 const enhancers = applyMiddleware(...middlewares)
 const store = createStore(
   rootReducer,
-  enhancers
+  composeWithDevTools(enhancers)
 )
 
 ReactDOM.render(
