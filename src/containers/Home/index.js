@@ -1,15 +1,19 @@
 import React from 'react'
 import Home from './Components/Home'
 import { Redirect} from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const IndexHome = props => {
   console.log('home comp', props)
   return (
     <div>
-      <h2>Home view!</h2>
-      {/* <Redirect to='/login' /> */}
+      <Home />
     </div>
   )
 }
 
-export default IndexHome
+function mapStateToProps({ auth }){
+  return { auth }
+}
+
+export default connect(mapStateToProps)(IndexHome)
