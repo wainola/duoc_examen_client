@@ -1,13 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
 
-export class GuestRoute extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
+const GuestRoute = (props, { isAuthenticated, component: Component }) => {
+  console.log('props Gest', props)
+  return (
+    <div>
+      <Route {...props} render={
+        props => ( isAuthenticated ?
+          (<Component history={props.history} location={props.location} match={props.match} />) 
+          :
+          <Redirect to='/'/>
+        )
+      }
+      />
+    </div>
+  )
 }
 
 export default GuestRoute

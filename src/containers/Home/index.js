@@ -1,12 +1,15 @@
 import React from 'react'
 import Home from './Components/Home'
+import { Redirect} from 'react-router-dom'
 
-const index = () => {
+const IndexHome = props => {
+  console.log('home comp', props)
   return (
     <div>
-      <Home />
+      <h2>Home view!</h2>
+      {/* <Redirect to='/login' /> */}
     </div>
   )
 }
 
-export default index
+export default IndexHome
