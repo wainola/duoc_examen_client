@@ -14,7 +14,6 @@ import {
 
 import Navbar from '../components/Navbar'
 import Home from '../containers/Home/Home'
-import Dashboard from '../containers/Dashboard/Dashboard'
 
 export class Router extends Component {
   constructor(props){
