@@ -43,8 +43,10 @@ export class Signin extends Component {
   onSubmit = e => {
     e.preventDefault()
     console.log('submit', this.state.user)
-    const error = Joi.validate(this.state.user, signinUserSchema)
-    console.log('error', error)
+    Joi.validate(this.state.user, signinUserSchema, (error, value) => {
+      console.log('error::::::::::::::::', error)
+      console.log('VALUE', value)
+    })
   }
   cleanID = rut => {
     if (rut.search('-') !== -1){
