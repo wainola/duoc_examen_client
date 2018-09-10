@@ -11,12 +11,13 @@ import {
 } from 'semantic-ui-react'
 
 import Protected from './Protected/Protected'
+import UnProtected from './UnProtected/UnProtected'
 
 import Navbar from '../components/Navbar'
 import IndexHome from '../containers/Home/index'
 import IndexLogin from '../containers/Login/index'
 import IndexGetCredit from '../containers/GetCreditRequest/index'
-import UnProtected from './UnProtected/UnProtected';
+import IndexSignin from '../containers/Signin/index'
 
 export class Router extends Component {
   constructor(props){
@@ -46,22 +47,27 @@ export class Router extends Component {
               <Icon name='home'/>
                 Home
             </Menu.Item> 
+            <Menu.Item as={Link} to='/signin' onClick={this.handleVisible}>
+              <Icon name='user' /> Crear usuario
+            </Menu.Item>
           </Sidebar>
-          <Sidebar.Pusher>
-            <Navbar visible={visible} handleVisible={this.handleVisible}/>
-            {/* GENERIC ROUTES */}
+            <Sidebar.Pusher>
+              <Navbar visible={visible} handleVisible={this.handleVisible}/>
+              {/* GENERIC ROUTES */}
 
-            <Route exact path='/' component={IndexHome} />
-            
-            <UnProtected location={location} exact path='/login' component={IndexLogin} isAuthenticated={isAuthenticated}/>
-            
-            {/* LOCATION IS THE KEY */}
-            <Protected location={location} exact path='/protected/get-credit' component={IndexGetCredit} />
+              <Route exact path='/' component={IndexHome} />
+              
+              <UnProtected location={location} exact path='/login' component={IndexLogin} isAuthenticated={isAuthenticated}/>
 
-            
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-</div>
+              <UnProtected location={location} exact path='/signin' component={IndexSignin} />
+              
+              {/* LOCATION IS THE KEY */}
+              <Protected location={location} exact path='/protected/get-credit' component={IndexGetCredit} />
+
+              
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
+        </div>
     )
   }
 }
