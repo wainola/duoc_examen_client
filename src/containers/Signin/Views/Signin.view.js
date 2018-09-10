@@ -21,13 +21,13 @@ const SigninView = props => {
                       <Form.Input type='text' placeholder='pérez' label='Apellido Paterno' name='apellido_paterno' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
-                      <Form.Input type='text' placeholder='cotapos' label='Apelliod materno' onChange={props.onChange}/>
+                      <Form.Input type='text' placeholder='cotapos' label='Apellido materno' name='apellido_materno' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
                       <Form.Input type='text' placeholder='01/01/2000' label='Fecha de nacimiento' name='fecha_nacimiento' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
-                      <Form.Input type='passsword' placeholder='contraseña' label='Contraseña' name='password' onChange={props.onChange}/>
+                      <Form.Input type='password' placeholder='contraseña' label='Contraseña' name='password' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
                       <Button color='facebook'>Registrarse</Button>

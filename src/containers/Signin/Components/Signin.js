@@ -18,22 +18,46 @@ export class Signin extends Component {
   }
   onChange = e => {
     e.preventDefault()
-    this.setState({
-      ...this.state,
-      user: {
-        ...this.state.user,
-        [e.target.name]: e.target.value
-      }
-    })
+    if((e.target.name === 'rut') && (e.target.value.split('.').length === 3 || e.target.value.split('.').length === 1)){
+      const { rut, dv } = this.cleanID(e.target.value)
+      this.setState({
+        ...this.state,
+        user: {
+          ...this.state.user,
+          rut,
+          dv
+        }
+      })
+    } else {
+      this.setState({
+        ...this.state,
+        user: {
+          ...this.state.user,
+          [e.target.name]: e.target.value
+        }
+      })
+    }
   }
   onSubmit = e => {
     e.preventDefault()
     console.log('submit', this.state.user)
   }
+  cleanID = rut => {
+    if (rut.search('-') !== -1){
+        const r = rut.substring(0, rut.search('-')).split('.').join('')
+        const d = rut.substring(rut.search('-')+1)
+        return { rut: r, dv: d }
+    } else {
+        return { rut: '', dv: '' }
+    }
+  }
   render() {
     return (
       <div>
-        <SigninView />
+        <SigninView
+        onSubmit={this.onSubmit}
+        onChange={this.onChange}
+         />
       </div>
     )
   }
