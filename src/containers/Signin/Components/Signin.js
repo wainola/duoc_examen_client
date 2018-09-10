@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import SigninView from '../Views/Signin.view'
+import Joi from 'joi'
+import { signinUserSchema } from '../../../validators/index'
 
 export class Signin extends Component {
   constructor(props){
@@ -41,6 +43,8 @@ export class Signin extends Component {
   onSubmit = e => {
     e.preventDefault()
     console.log('submit', this.state.user)
+    const error = Joi.validate(this.state.user, signinUserSchema)
+    console.log('error', error)
   }
   cleanID = rut => {
     if (rut.search('-') !== -1){
