@@ -50,11 +50,10 @@ export class Router extends Component {
             <Navbar visible={visible} handleVisible={this.handleVisible}/>
             {/* GENERIC ROUTES */}
 
-            <GuestRoute location={location} match={match} history={history} component={IndexHome} isAuthenticated={isAuthenticated} exact path='/' />
 
             <GuestRoute location={location} match={match} history={history} component={indexLogin} isAuthenticated={isAuthenticated} exact path='/login' />
 
-            <AuthRoute location={location} match={match} history={history} component={IndexGetCredit} isAuthenticated={isAuthenticated} exact path='/get-credit' />
+            
           </Sidebar.Pusher>
         </Sidebar.Pushable>
 </div>
@@ -67,3 +66,4 @@ function mapStateToProps({ google, auth }){
 }
 
 export default connect(mapStateToProps)(Router)
+ 

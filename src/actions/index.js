@@ -15,6 +15,8 @@ export const FAIL_GET_ALL_DATA = 'FAIL_GET_ALL_DATA'
 
 export const SEND_DATA_TO_VIEW = 'SEND_DATA_TO_VIEW'
 
+export const CHANGE_LOGIN_STATUS = 'CHANGE_LOGIN_STATUS'
+
 export const successGoogleLogin = () => ({
   type: SUCCESS_GOOGLE_LOGIN
 })
@@ -43,3 +45,8 @@ export const sendDataToView = payload => {
   type: SEND_DATA_TO_VIEW,
   payload
 }
+
+export const changeLoginStatus = payload => ({
+  type: CHANGE_LOGIN_STATUS,
+  payload
+})

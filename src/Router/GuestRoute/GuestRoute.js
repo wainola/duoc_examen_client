@@ -1,16 +1,18 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const GuestRoute = (props, { isAuthenticated, component: Component }) => {
+const GuestRoute = (props) => {
+  const { auth: { isAuthenticated }, location: { pathname }, component: Component } = props
   return (
     <div>
       <Route {...props} render={
         props => ( 
-          (isAuthenticated && props.path === '/') && (
-            <Component history={props.history} location={props.location} match={props.match} />
-          )
-          (isAuthenticated && props.path === 'login') && (
-            <Component history={props.history} location={props.location} match={props.match} />
+          !isAuthenticated ? 
+          (
+            <Component {...props} />
+          ) : (
+            <Redirect to='/get-credit' />
           )
         )
       }
@@ -19,4 +21,8 @@ const GuestRoute = (props, { isAuthenticated, component: Component }) => {
   )
 }
 
-export default GuestRoute
+function mapStateToProps({ auth }){
+  return { auth }
+}
+
+export default connect(mapStateToProps)(GuestRoute)

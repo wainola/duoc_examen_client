@@ -1,18 +1,25 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const AuthRoute = (props, { isAuthenticated, component: Component }) => {
+const AuthRoute = (props) => {
+  const { auth: { isAuthenticated }, component: Component } = props
   console.log('props authRoute', props)
+  console.log('authcomponent', isAuthenticated)
   return (
     <Route
     {...props}
     render={
       props => (
       (
-        !isAuthenticated ?  <Component {...props} /> :<Redirect to='/get-credit'/>
+        isAuthenticated ? <Component {...props} /> : <Redirect to='/login'/>
       )
     )} />
   )
 }
 
-export default AuthRoute
+function mapStateToProps({ auth }){
+  return { auth }
+}
+
+export default connect(mapStateToProps)(AuthRoute)
