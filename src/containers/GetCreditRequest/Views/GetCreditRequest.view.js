@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Header, Button, Table } from 'semantic-ui-react'
 
-const GetCreditRequestView = () => {
+const GetCreditRequestView = props => {
   return (
     <div>
       <Grid verticalAlign='middle' textAlign='center' column='1'>

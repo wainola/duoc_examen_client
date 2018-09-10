@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const AuthRoute = (props) => {
-  console.log('props', props)
+  console.log('props authRoute', props)
   const { google: { google_auth }, location, history, match, component: Component } = props
   return (
     <Route render={props => (

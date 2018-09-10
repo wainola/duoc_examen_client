@@ -9,7 +9,7 @@ const GuestRoute = (props, { isAuthenticated, component: Component }) => {
         props => ( isAuthenticated ?
           (<Component history={props.history} location={props.location} match={props.match} />) 
           :
-          <Redirect to='/'/>
+          <Redirect to='/get-credit'/>
         )
       }
       />

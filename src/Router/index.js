@@ -15,6 +15,7 @@ import {
 import Navbar from '../components/Navbar'
 import indexLogin from '../containers/Login/index'
 import IndexHome from '../containers/Home/index'
+import IndexGetCredit from '../containers/GetCreditRequest';
 
 export class Router extends Component {
   constructor(props){
@@ -48,10 +49,12 @@ export class Router extends Component {
           <Sidebar.Pusher>
             <Navbar visible={visible} handleVisible={this.handleVisible}/>
             {/* GENERIC ROUTES */}
-            {/* <Route path='/' component={IndexHome} /> */}
+
             <GuestRoute location={location} match={match} history={history} component={IndexHome} isAuthenticated={isAuthenticated} exact path='/' />
 
             <GuestRoute location={location} match={match} history={history} component={indexLogin} isAuthenticated={isAuthenticated} exact path='/login' />
+
+            <AuthRoute location={location} match={match} history={history} component={IndexGetCredit} isAuthenticated={isAuthenticated} exact path='/get-credit' />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
 </div>
