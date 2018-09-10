@@ -6,15 +6,20 @@ import LoginView from '../Views/Login.view'
 import { changeLoginStatus } from '../../../actions/index'
 
 export class Login extends Component {
+  componentWillReceiveProps(nextProps){
+    console.log('nextProps', nextProps)
+    if(nextProps.auth.isAuthenticated){
+      nextProps.history.push('/protected/get-credit')
+    }
+  }
   handleChangeAuth = e => {
     e.preventDefault()
     this.props.changeLoginStatus(!this.props.auth.isAuthenticated)
   }
   render() {
-    console.log('this.props', this.props.auth.isAuthenticated)
     return (
       <div>
-        <LoginView handleChangeAuth={this.handleChangeAuth} />
+        <LoginView handleChangeAuth={this.handleChangeAuth} isAuthenticated={this.props.auth.isAuthenticated} />
       </div>
     )
   }

@@ -5,7 +5,7 @@ const IndexLogin = props => {
   console.log('props login', props)
   return (
     <div>
-      <Login />
+      <Login {...props}/>
     </div>
   )
 }

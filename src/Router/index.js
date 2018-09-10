@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, Route } from 'react-router-dom'
+import { Link, Route, Redirect } from 'react-router-dom'
 import {
   Grid,
   Container,
@@ -10,10 +10,13 @@ import {
   Icon
 } from 'semantic-ui-react'
 
+import Protected from './Protected/Protected'
+
 import Navbar from '../components/Navbar'
 import IndexHome from '../containers/Home/index'
 import IndexLogin from '../containers/Login/index'
-import Protected from './Protected/Protected'
+import IndexGetCredit from '../containers/GetCreditRequest/index'
+import UnProtected from './UnProtected/UnProtected';
 
 export class Router extends Component {
   constructor(props){
@@ -49,8 +52,11 @@ export class Router extends Component {
             {/* GENERIC ROUTES */}
 
             <Route exact path='/' component={IndexHome} />
-            <Route path='/login' component={IndexLogin} />
-            <PrivateRouter path='/protected' component={Protected} />
+            
+            <UnProtected location={location} exact path='/login' component={IndexLogin} isAuthenticated={isAuthenticated}/>
+            
+            {/* LOCATION IS THE KEY */}
+            <Protected location={location} exact path='/protected/get-credit' component={IndexGetCredit} />
 
             
           </Sidebar.Pusher>

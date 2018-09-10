@@ -9,6 +9,7 @@ const GetCreditRequestView = props => {
           <Grid.Column>
             <Header as='h3'>Estado de solicitudes</Header>
             <Button color='yellow' onClick={props.clickActionButtons} value='crear'>Crear solicitud de credito</Button>
+            <Button color='twitter' onClick={props.handleLogin}>Logout</Button>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
