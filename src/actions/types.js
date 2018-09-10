@@ -3,6 +3,7 @@ export const FAIL_GOOGLE_LOGIN = 'FAIL_GOOGLE_LOGIN'
 
 export const SUCCESS_LOCAL_LOGIN = 'SUCCESS_LOCAL_LOGIN'
 export const FAIL_LOCAL_LOGIN = 'FAIL_LOCAL_LOGIN'
+export const LOGOUT = 'LOGOUT'
 
 export const MAKE_AUTH = 'MAKE_AUTH'
 

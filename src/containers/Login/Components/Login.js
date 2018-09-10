@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LoginView from '../Views/Login.view'
 
+import { successLocalLogin } from '../../../actions/index'
+
 export class Login extends Component {
   constructor(props){
     super(props)
@@ -36,6 +38,7 @@ export class Login extends Component {
   onSubmit = e => {
     e.preventDefault()
     console.log('this.state', this.state)
+    this.props.successLocalLogin({})
   }
   render() {
     return (
@@ -55,7 +58,7 @@ function mapStateToProps({ auth }){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ }, dispatch)
+  return bindActionCreators({ successLocalLogin }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

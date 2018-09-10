@@ -3,10 +3,12 @@ import GetCreditRequestView from '../Views/GetCreditRequest.view';
 import { connect } from 'react-redux'
 import {  bindActionCreators } from 'redux'
 
+import { logout } from '../../../actions/index'
+
 export class GetCreditRequest extends Component {
   handleLogin = e => {
     e.preventDefault()
-    this.props.changeLoginStatus(!this.props.auth.isAuthenticated)
+    this.props.logout()
   }
   render() {
     return (
@@ -21,4 +23,8 @@ function mapStateToProps({ auth }){
   return { auth }
 }
 
-export default connect(mapStateToProps)(GetCreditRequest)
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ logout }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GetCreditRequest)
