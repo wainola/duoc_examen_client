@@ -6,6 +6,15 @@ import LoginView from '../Views/Login.view'
 import { changeLoginStatus } from '../../../actions/index'
 
 export class Login extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      user: {
+        rut: '',
+        password: ''
+      }
+    }
+  }
   componentWillReceiveProps(nextProps){
     console.log('nextProps', nextProps)
     if(nextProps.auth.isAuthenticated){
@@ -16,10 +25,28 @@ export class Login extends Component {
     e.preventDefault()
     this.props.changeLoginStatus(!this.props.auth.isAuthenticated)
   }
+  onChange = e => {
+    e.preventDefault()
+    this.setState({
+      ...this.state,
+      user: {
+        ...this.state.user,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+  onSubmit = e => {
+    e.preventDefault()
+    console.log('this.state', this.state)
+  }
   render() {
     return (
       <div>
-        <LoginView handleChangeAuth={this.handleChangeAuth} isAuthenticated={this.props.auth.isAuthenticated} />
+        <LoginView 
+        handleChangeAuth={this.handleChangeAuth} 
+        onSubmit={this.onSubmit}
+        onChange={this.onChange}
+        />
       </div>
     )
   }
