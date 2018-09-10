@@ -1,6 +1,6 @@
 import React from 'react'
 import { Responsive, Grid, Container, Image, Segment, Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import creditImage from '../../../assets/credit.jpg'
 
 const HomeView = props => {

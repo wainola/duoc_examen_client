@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import AuthRoute from './AuthRoute/AuthRoute'
-import GuestRoute from './GuestRoute/GuestRoute'
 import { connect } from 'react-redux'
 import { Link, Route } from 'react-router-dom'
 import {
@@ -13,9 +11,9 @@ import {
 } from 'semantic-ui-react'
 
 import Navbar from '../components/Navbar'
-import indexLogin from '../containers/Login/index'
 import IndexHome from '../containers/Home/index'
-import IndexGetCredit from '../containers/GetCreditRequest';
+import IndexLogin from '../containers/Login/index'
+import Protected from './Protected/Protected'
 
 export class Router extends Component {
   constructor(props){
@@ -50,8 +48,9 @@ export class Router extends Component {
             <Navbar visible={visible} handleVisible={this.handleVisible}/>
             {/* GENERIC ROUTES */}
 
-
-            <GuestRoute location={location} match={match} history={history} component={indexLogin} isAuthenticated={isAuthenticated} exact path='/login' />
+            <Route exact path='/' component={IndexHome} />
+            <Route path='/login' component={IndexLogin} />
+            <PrivateRouter path='/protected' component={Protected} />
 
             
           </Sidebar.Pusher>

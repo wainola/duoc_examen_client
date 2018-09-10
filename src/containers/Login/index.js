@@ -1,7 +1,7 @@
 import React from 'react'
 import Login from './Components/Login'
 
-const indexLogin = props => {
+const IndexLogin = props => {
   console.log('props login', props)
   return (
     <div>
@@ -10,4 +10,4 @@ const indexLogin = props => {
   )
 }
 
-export default indexLogin
+export default IndexLogin
