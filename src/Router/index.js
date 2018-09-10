@@ -48,7 +48,8 @@ export class Router extends Component {
           <Sidebar.Pusher>
             <Navbar visible={visible} handleVisible={this.handleVisible}/>
             {/* GENERIC ROUTES */}
-            <Route path='/' component={IndexHome} />
+            {/* <Route path='/' component={IndexHome} /> */}
+            <GuestRoute location={location} match={match} history={history} component={IndexHome} isAuthenticated={isAuthenticated} exact path='/' />
 
             <GuestRoute location={location} match={match} history={history} component={indexLogin} isAuthenticated={isAuthenticated} exact path='/login' />
           </Sidebar.Pusher>
