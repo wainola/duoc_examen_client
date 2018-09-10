@@ -1,21 +1,18 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
 
-const AuthRoute = (props) => {
+const AuthRoute = (props, { isAuthenticated, component: Component }) => {
   console.log('props authRoute', props)
-  const { google: { google_auth }, location, history, match, component: Component } = props
   return (
-    <Route render={props => (
+    <Route
+    {...props}
+    render={
+      props => (
       (
-        !google_auth ? <Redirect to='/'/> : <Component {...props} />
+        !isAuthenticated ?  <Component {...props} /> :<Redirect to='/get-credit'/>
       )
     )} />
   )
 }
 
-function mapStateToProps({ google }){
-  return { google }
-}
-
-export default connect(mapStateToProps)(AuthRoute)
+export default AuthRoute

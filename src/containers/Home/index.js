@@ -4,7 +4,6 @@ import { Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const IndexHome = props => {
-  console.log('home comp', props)
   return (
     <div>
       <Home />
