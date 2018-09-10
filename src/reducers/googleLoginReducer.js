@@ -1,7 +1,7 @@
 import {
   SUCCESS_GOOGLE_LOGIN,
   FAIL_GOOGLE_LOGIN
-} from '../actions/index'
+} from '../actions/types'
 
 const initialState = {
   google_auth: true

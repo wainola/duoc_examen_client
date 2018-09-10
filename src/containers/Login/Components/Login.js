@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LoginView from '../Views/Login.view'
 
-import { changeLoginStatus } from '../../../actions/index'
-
 export class Login extends Component {
   constructor(props){
     super(props)
@@ -57,7 +55,7 @@ function mapStateToProps({ auth }){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ changeLoginStatus }, dispatch)
+  return bindActionCreators({ }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

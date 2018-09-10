@@ -1,7 +1,7 @@
 import {
   GET_ALL_DATA,
   FAIL_GET_ALL_DATA
-} from '../actions/index'
+} from '../actions/types'
 
 export default function(state = {}, action){
   switch(action.type){
