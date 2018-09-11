@@ -16,9 +16,9 @@ import UnProtected from './UnProtected/UnProtected'
 import Navbar from '../components/Navbar'
 import IndexHome from '../containers/Home/index'
 import IndexLogin from '../containers/Login/index'
-// import IndexGetCredit from '../containers/GetCreditRequest/index'
 import IndexSignin from '../containers/Signin/index'
-import IndexCreateCreditRequest from '../containers/CreateCreditRequest/index'
+import CreateCredit from '../containers/CreateCreditRequest/index'
+import GetCredit from '../containers/GetCreditRequest/index'
 
 export class Router extends Component {
   constructor(props){
@@ -61,12 +61,9 @@ export class Router extends Component {
               <UnProtected location={location} exact path='/signin' component={IndexSignin} />
               
               {/* LOCATION IS THE KEY */}
-              {/* <Protected location={location} exact path='/protected/get-credit' component={IndexGetCredit} /> */}
-              
-              <Protected location={location} exact path='/protected/create-credit-request' component={IndexCreateCreditRequest} />
+              <Protected location={location} exact path='/protected/get-credit' component={GetCredit} />
+              <Protected location={location} exact path='/protected/create-credit' component={CreateCredit} />
 
-
-              
             </Sidebar.Pusher>
           </Sidebar.Pushable>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { CreateCreditRequest } from './Components/CreateCreditRequest';
 
-const IndexCreateCreditRequest = props => {
+const CreateCredit = props => {
   console.log('create credit request')
   return (
     <div>
@@ -10,4 +10,4 @@ const IndexCreateCreditRequest = props => {
   )
 }
 
-export default IndexCreateCreditRequest
+export default CreateCredit
