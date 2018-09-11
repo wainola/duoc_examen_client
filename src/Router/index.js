@@ -55,7 +55,7 @@ export class Router extends Component {
               <Navbar visible={visible} handleVisible={this.handleVisible}/>
               {/* GENERIC ROUTES */}
 
-              <Route exact path='/' component={IndexHome} />
+             <UnProtected location={location} exact path='/' component={IndexHome} isAuthenticated={isAuthenticated}/>
               
               <UnProtected location={location} exact path='/login' component={IndexLogin} isAuthenticated={isAuthenticated}/>
 
