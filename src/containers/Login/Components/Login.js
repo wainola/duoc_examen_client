@@ -13,14 +13,12 @@ export class Login extends Component {
       user: {
         rut: '',
         password: ''
-      }
+      },
+      errorSwal: false
     }
   }
   componentWillReceiveProps(nextProps){
     console.log('nextProps', nextProps)
-    // if(nextProps.auth.isAuthenticated){
-    //   nextProps.history.push('/protected/get-credit')
-    // }
   }
   handleChangeAuth = e => {
     e.preventDefault()
@@ -37,8 +35,6 @@ export class Login extends Component {
           ...this.state.user,
           [e.target.name]: rut
         }
-      }, () => {
-        console.log('rut', this.state.user.rut)
       })
     } else {
       this.setState({
@@ -52,9 +48,21 @@ export class Login extends Component {
   }
   onSubmit = e => {
     e.preventDefault()
-    console.log('this.state', this.state)
     const body = { credentials: { ...this.state.user } }
-    this.props.localLogin(body)
+    this.props.localLogin(body).then(() => {
+      if(this.props.auth.status === 404){
+        this.setState({
+          errorSwal: !this.state.errorSwal
+        })
+      }
+    }) 
+  }
+  closeSwal = () => {
+    this.setState({
+      errorSwal: !this.state.errorSwal
+    }, () => {
+      document.forms[0].reset()
+    })
   }
   render() {
     return (
@@ -63,6 +71,8 @@ export class Login extends Component {
         handleChangeAuth={this.handleChangeAuth} 
         onSubmit={this.onSubmit}
         onChange={this.onChange}
+        errorSwal={this.state.errorSwal}
+        closeSwal={this.closeSwal}
         />
       </div>
     )
