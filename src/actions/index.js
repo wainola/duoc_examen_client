@@ -5,7 +5,9 @@ import {
   FAIL_LOCAL_LOGIN,
   LOGOUT,
   GET_ALL_DATA,
-  FAIL_GET_ALL_DATA
+  FAIL_GET_ALL_DATA,
+  POST_USER,
+  FAIL_POST_USER
 } from './types'
 
 export const successGoogleLogin = () => ({

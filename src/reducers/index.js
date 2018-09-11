@@ -3,10 +3,12 @@ import creditReducer from './creditReducer'
 import googleReducer from './googleLoginReducer'
 import requestReducer from './requestReducer'
 import authReducer from './authReducer'
+import userReducer from './userReducer'
 
 export default combineReducers({
   credit: creditReducer,
   google: googleReducer,
   request: requestReducer,
-  auth: authReducer
+  auth: authReducer,
+  user: userReducer
 })

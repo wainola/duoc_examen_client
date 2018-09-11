@@ -12,6 +12,10 @@ class API {
       .then(response => response)
       .catch(response => response)
     }
+
+    static postUser(body){
+      return axios.post(`${REACT_APP_API_URL}/api/user`, body)
+    }
 }
 
 export default API

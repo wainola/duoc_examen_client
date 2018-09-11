@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import SigninView from '../Views/Signin.view'
 import Joi from 'joi'
 import { signinUserSchema } from '../../../validators/index'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { postUser } from '../../../actions/index'
 
 export class Signin extends Component {
   constructor(props){
@@ -17,7 +20,8 @@ export class Signin extends Component {
         password: ''
       },
       errorSwal: false,
-      successSwal: false
+      successSwal: false,
+      passwordMatch: false
     }
   }
   onChange = e => {
@@ -32,7 +36,15 @@ export class Signin extends Component {
           dv
         }
       })
-    } else {
+    } 
+    else if(e.target.name === 'password_repeated' && this.state.user.password !== ''){
+      this.setState({
+        passwordMatch: e.target.value === this.state.user.password
+      }, () => {
+        console.log('passwordMatched? ', this.state.passwordMatch)
+      })
+    }
+    else {
       this.setState({
         ...this.state,
         user: {
@@ -91,4 +103,12 @@ export class Signin extends Component {
   }
 }
 
-export default Signin
+function mapStateToProps({ user }){
+  return { user }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ postUser }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin)
