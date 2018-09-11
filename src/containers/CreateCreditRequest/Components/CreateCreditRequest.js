@@ -68,11 +68,6 @@ export class CreateCreditRequest extends Component {
   render() {
     return (
       <div>
-        <Grid.Row>
-          <Grid.Column>
-            <Button color='facebook' value='crear' onClick={this.props.clickActionButtons}>Volver</Button>
-          </Grid.Column>
-        </Grid.Row>
         <CreateCreditView 
           estadoCivil={estadoCivil}
           comunas={c}
