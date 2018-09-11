@@ -18,6 +18,7 @@ import IndexHome from '../containers/Home/index'
 import IndexLogin from '../containers/Login/index'
 import IndexGetCredit from '../containers/GetCreditRequest/index'
 import IndexSignin from '../containers/Signin/index'
+import IndexCreateCreditRequest from '../containers/CreateCreditRequest/index'
 
 export class Router extends Component {
   constructor(props){
@@ -63,6 +64,8 @@ export class Router extends Component {
               
               {/* LOCATION IS THE KEY */}
               <Protected location={location} exact path='/protected/get-credit' component={IndexGetCredit} />
+
+              <Protected location={location} exact path='/protected/create-credit-request' component={IndexCreateCreditRequest} />
 
               
             </Sidebar.Pusher>

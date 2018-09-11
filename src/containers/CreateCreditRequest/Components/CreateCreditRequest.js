@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { comunas } from './comunas'
+import { comunas } from '../../../data/comunas'
 import { flattenDeep } from 'lodash'
 import { Button, Grid } from 'semantic-ui-react';
 import CreateCreditView from '../Views/CreateCredit.view';
@@ -73,7 +73,12 @@ export class CreateCreditRequest extends Component {
             <Button color='facebook' value='crear' onClick={this.props.clickActionButtons}>Volver</Button>
           </Grid.Column>
         </Grid.Row>
-        <CreateCreditView />
+        <CreateCreditView 
+          estadoCivil={estadoCivil}
+          comunas={c}
+          educacion={educacion}
+          renta={renta}
+        />
       </div>
     )
   }
