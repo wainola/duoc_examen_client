@@ -1,6 +1,5 @@
 import React from 'react'
 import Home from './Components/Home'
-import { Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const IndexHome = props => {

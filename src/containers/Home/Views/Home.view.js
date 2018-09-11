@@ -1,6 +1,6 @@
 import React from 'react'
 import { Responsive, Grid, Container, Image, Segment, Button } from 'semantic-ui-react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import creditImage from '../../../assets/credit.jpg'
 
 const HomeView = props => {
@@ -17,6 +17,7 @@ const HomeView = props => {
               </Grid.Column>
               <Grid.Column>
                 <Button color='facebook' as={Link}to='/login'>Ingresar</Button>
+                <Button color='google plus' as={Link} to='/signin'>Registrarse</Button>
               </Grid.Column>
             </Grid.Row>
           </Grid>

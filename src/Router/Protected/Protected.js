@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import IndexGetCredit from '../../containers/GetCreditRequest/index'
 
 const Protected = ({ component: Component, auth: { isAuthenticated }, ...rest }) => {
+  console.log('protected', rest)
+  console.log('component', Component)
   return(
     <Route {...rest} render={props => 
       isAuthenticated ? <IndexGetCredit {...props}/> : <Redirect to='/login' />

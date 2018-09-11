@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid, Header, Button, Table } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 const GetCreditRequestView = props => {
   return (
@@ -8,7 +9,7 @@ const GetCreditRequestView = props => {
         <Grid.Row>
           <Grid.Column>
             <Header as='h3'>Estado de solicitudes</Header>
-            <Button color='facebook' onClick={props.clickActionButtons} value='crear'>Crear solicitud de credito</Button>
+            <Button color='facebook' onClick={props.clickActionButtons} value='crear' as={Link} to='/protected/create-credit-request'>Crear solicitud de credito</Button>
             <Button color='google plus' onClick={props.handleLogin}>Logout</Button>
           </Grid.Column>
         </Grid.Row>
