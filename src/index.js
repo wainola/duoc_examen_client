@@ -9,7 +9,7 @@ import logger from 'redux-logger'
 import rootReducer from './reducers'
 import { composeWithDevTools } from  'redux-devtools-extension'
 
-import { successGoogleLogin, action } from './actions/index'
+import { refreshAuth } from './actions/index'
 // Styles
 import 'semantic-ui-css/semantic.min.css';
 // Routes
@@ -21,6 +21,10 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(enhancers)
 )
+
+if(localStorage.user){
+  store.dispatch(refreshAuth())
+}
 
 ReactDOM.render(
 <BrowserRouter>

@@ -1,7 +1,8 @@
 import {
   SUCCESS_LOCAL_LOGIN,
   FAIL_LOCAL_LOGIN,
-  LOGOUT
+  LOGOUT,
+  REFRESH_AUTH
 } from '../actions/types'
 
 const initialState = {
@@ -17,6 +18,8 @@ export default function(state = initialState, action){
       return state
     case LOGOUT:
       localStorage.removeItem('user')
+      return { ...state, isAuthenticated: !state.isAuthenticated }
+    case REFRESH_AUTH:
       return { ...state, isAuthenticated: !state.isAuthenticated }
     default:
       return state

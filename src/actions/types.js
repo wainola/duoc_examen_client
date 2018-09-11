@@ -9,6 +9,7 @@ export const GET_ALL_DATA = 'GET_ALL_DATA'
 export const FAIL_GET_ALL_DATA = 'FAIL_GET_ALL_DATA'
 export const SEND_DATA_TO_VIEW = 'SEND_DATA_TO_VIEW'
 export const CHANGE_LOGIN_STATUS = 'CHANGE_LOGIN_STATUS'
+export const REFRESH_AUTH = 'REFRESH_AUTH'
 
 // CRUD TYPES
 export const POST_USER = 'POST_USER'

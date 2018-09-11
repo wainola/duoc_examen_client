@@ -7,7 +7,8 @@ import {
   GET_ALL_DATA,
   FAIL_GET_ALL_DATA,
   POST_USER,
-  FAIL_POST_USER
+  FAIL_POST_USER,
+  REFRESH_AUTH
 } from './types'
 
 export const successGoogleLogin = () => ({
@@ -26,6 +27,10 @@ export const failGettingAllTheData = payload => ({
 
 export const logout = () => ({
   type: LOGOUT
+})
+
+export const refreshAuth = () => ({
+  type: REFRESH_AUTH
 })
 
 // ASYNC ACTIONS AND THEIR DISPATCHERS
