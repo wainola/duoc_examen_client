@@ -36,7 +36,7 @@ export const logout = () => ({
   type: LOGOUT
 })
 
-// ASYNC ACTIONS
+// ASYNC ACTIONS AND THEIR DISPATCHERS
 
 export const getCreditData = () => dispatch => {
   return API.getCredits()
@@ -48,3 +48,19 @@ export const localLogin = body => dispatch => {
     .then(res => dispatch(successLocalLogin({ data: res.data, status: res.status })))
     .catch(res => dispatch(failLocalLogin(res)))
 }
+
+export const postUser = body => dispatch => {
+  return API.postUser(body)
+    .then(res => dispatch(successPostingUser({ data: res.data })))
+    .catch(res => dispatch(failPostingUser(res)))
+}
+
+export const successPostingUser = payload => ({
+  type: POST_USER,
+  payload
+})
+
+export const failPostingUser = payload => ({
+  type: FAIL_POST_USER,
+  payload
+})
