@@ -1,5 +1,9 @@
 import React from 'react'
 import { Grid, Responsive, Container, Form, Button, Segment } from 'semantic-ui-react'
+import swal from 'sweetalert2'
+import { withSwalInstance } from 'sweetalert2-react'
+
+const SweetAlert = withSwalInstance(swal)
 
 const SigninView = props => {
   return (
@@ -30,9 +34,24 @@ const SigninView = props => {
                       <Form.Input type='password' placeholder='contraseña' label='Contraseña' name='password' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
+                      <Form.Input type='password' placeholder='contraseña' label='Repetir contraseña' name='password_repeated' onChange={props.onChange}/>
+                    </Form.Field>
+                    <Form.Field>
                       <Button color='facebook'>Registrarse</Button>
                     </Form.Field>
                   </Form>
+                  <SweetAlert 
+                    show={props.errorSwal}
+                    title={'Alguno de los campos no se ingresó correctamente'}
+                    onConfirm={() => props.closeSwalError()}
+                    type={'error'}
+                    />
+                    <SweetAlert 
+                    show={props.successSwal}
+                    title={'Éxito en registrar el usuario'}
+                    onConfirm={() => props.closeSwalSuccess()}
+                    type={'success'}
+                    />
                 </Segment>
               </Grid.Column>
             </Grid.Row>

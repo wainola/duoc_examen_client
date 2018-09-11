@@ -15,7 +15,9 @@ export class Signin extends Component {
         apellido_materno: '',
         fecha_nacimiento: '',
         password: ''
-      }
+      },
+      errorSwal: false,
+      successSwal: false
     }
   }
   onChange = e => {
@@ -44,6 +46,12 @@ export class Signin extends Component {
     e.preventDefault()
     console.log('submit', this.state.user)
     Joi.validate(this.state.user, signinUserSchema, (error, value) => {
+      if(error !== null){
+        this.setState({
+          errorSwal: !this.state.errorSwal
+        })
+      }
+
       console.log('error::::::::::::::::', error)
       console.log('VALUE', value)
     })
@@ -57,12 +65,26 @@ export class Signin extends Component {
         return { rut: '', dv: '' }
     }
   }
+  closeSwalError = () => {
+    this.setState({
+      errorSwal: !this.state.errorSwal
+    })
+  }
+  closeSwalSuccess = () => {
+    this.setState({
+      successSwal: !this.state.successSwal
+    })
+  }
   render() {
     return (
       <div>
         <SigninView
         onSubmit={this.onSubmit}
         onChange={this.onChange}
+        closeSwalError={this.closeSwalError}
+        errorSwal={this.state.errorSwal}
+        closeSwalSuccess={this.closeSwalSuccess}
+        successSwal={this.state.successSwal}
          />
       </div>
     )
