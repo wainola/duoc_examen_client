@@ -1,5 +1,6 @@
 import React from 'react'
 import { Responsive, Container, Grid, Form, Segment, Header, Checkbox, Dropdown, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 const CreateCreditView = props => {
   return (
@@ -7,7 +8,15 @@ const CreateCreditView = props => {
       <Responsive>
         <Container>
           <Grid>
-            <Grid.Row>
+           <Grid.Row columns={2} textAlign='center' style={{ paddingTop: '2.5rem' }}>
+            <Grid.Column>
+              <Button as={Link} to='/protected/get-credit'>Ver créditos</Button>
+            </Grid.Column>
+            <Grid.Column>
+              <Button as={Link} to='/protected/user-info'>Ver datos de usuarios</Button>
+            </Grid.Column>
+           </Grid.Row>
+            <Grid.Row columns={1}>
               <Grid.Column>
                 <Segment raised>
                   <Form style={{ heigth: '1500px' }}>
@@ -69,7 +78,10 @@ const CreateCreditView = props => {
                       <Form.Input type='text' label='Dirección' name='direccion' placeholder='ingrese dirección' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
-                      <Dropdown placeholder='Estado civil' fluid selection options={props.comunas} label='Comunas' pointing='bottom' onChange={props.handleComunas}/>
+                      <Dropdown placeholder='Comuna' fluid selection options={props.comunas} search label='Comunas' pointing='bottom' onChange={props.handleComunas}/>
+                    </Form.Field>
+                    <Form.Field>
+                      <Dropdown placeholder='Estado civil' fluid selection options={props.estadoCivil} label='Comunas' pointing='bottom' onChange={props.handleComunas}/>
                     </Form.Field>
                     <Form.Field>
                       <Dropdown placeholder='Educación' fluid selection options={props.educacion} onChange={props.handleEducacion}/>

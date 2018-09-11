@@ -1,7 +1,7 @@
 import React from 'react'
-import { Grid, Form, Table, Checkbox, Header, Dropdown } from 'semantic-ui-react'
+import { Grid, Form, Checkbox, Header, Dropdown , Segment, Button } from 'semantic-ui-react'
 
-const EditCreditView = () => {
+const EditCreditView = props => {
   return (
     <div>
       <Grid>
@@ -44,7 +44,7 @@ const EditCreditView = () => {
                     />
                   </Form.Field>
                   <Form.Field>
-                    <Dropdown placeholder='Estado civil' fluid selection options={estadoCivil} label='Estado Civil' pointing='bottom' onChange={props.handleEstadoCivil}/>
+                    <Dropdown placeholder='Estado civil' fluid selection options={props.estadoCivil} label='Estado Civil' pointing='bottom' onChange={props.handleEstadoCivil}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Hijos</label>
@@ -67,13 +67,13 @@ const EditCreditView = () => {
                     <Form.Input type='text' label='Dirección' name='direccion' placeholder='ingrese dirección' onChange={props.onChange}/>
                   </Form.Field>
                   <Form.Field>
-                    <Dropdown placeholder='Estado civil' fluid selection options={comunas} label='Comunas' pointing='bottom' onChange={props.handleComunas}/>
+                    <Dropdown placeholder='Estado civil' fluid selection options={props.comunas} label='Comunas' pointing='bottom' onChange={props.handleComunas}/>
                   </Form.Field>
                   <Form.Field>
-                    <Dropdown placeholder='Educación' fluid selection options={educacion} onChange={props.handleEducacion}/>
+                    <Dropdown placeholder='Educación' fluid selection options={props.educacion} onChange={props.handleEducacion}/>
                   </Form.Field>
                   <Form.Field>
-                    <Dropdown placeholder='Renta' fluid selection options={renta} onChange={props.handleRenta}/>
+                    <Dropdown placeholder='Renta' fluid selection options={props.renta} onChange={props.handleRenta}/>
                   </Form.Field>
                   <Form.Field>
                     <Form.Input type='text' placeholder='sólo números' label='Sueldo líquido' name='sueldo_liquido' onChange={props.onChange}/>

@@ -19,6 +19,7 @@ import IndexLogin from '../containers/Login/index'
 import IndexSignin from '../containers/Signin/index'
 import CreateCredit from '../containers/CreateCreditRequest/index'
 import GetCredit from '../containers/GetCreditRequest/index'
+import EditCreditComp from '../containers/EditCredit/index'
 
 export class Router extends Component {
   constructor(props){
@@ -54,6 +55,7 @@ export class Router extends Component {
           </Sidebar>
             <Sidebar.Pusher>
               <Navbar visible={visible} handleVisible={this.handleVisible}/>
+
               {/* GENERIC ROUTES */}
 
               <UnProtected location={location} exact path='/' component={IndexHome} />
@@ -63,6 +65,7 @@ export class Router extends Component {
               {/* LOCATION IS THE KEY */}
               <Protected location={location} exact path='/protected/get-credit' component={GetCredit} />
               <Protected location={location} exact path='/protected/create-credit' component={CreateCredit} />
+              <Protected location={location} exact path='/protected/edit-credit' component={EditCreditComp} />
 
             </Sidebar.Pusher>
           </Sidebar.Pushable>

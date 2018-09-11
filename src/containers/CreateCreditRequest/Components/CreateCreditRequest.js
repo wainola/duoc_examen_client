@@ -4,37 +4,37 @@ import { flattenDeep } from 'lodash'
 import { Button, Grid } from 'semantic-ui-react';
 import CreateCreditView from '../Views/CreateCredit.view';
 
-const estadoCivil = [
+export const estadoCivil = [
   { key: 1, value: 'Soltero', text:'Soltero'},
   { key: 2, value: 'Casado', text: 'Casado'},
   { key: 3, value: 'Viudo', text: 'Viudo'},
   { key: 4, value: 'Divorciado', text: 'Divorciado'}
 ]
 
-const c = flattenDeep(comunas.regiones.filter(item => item.nombre === 'Región Metropolitana de Santiago').map(item => item.comunas)).map((item, idx) => ({ key: idx, value: item, text: item}))
+export const c = flattenDeep(comunas.regiones.filter(item => item.nombre === 'Región Metropolitana de Santiago').map(item => item.comunas)).map((item, idx) => ({ key: idx, value: item, text: item}))
 
-const educacion = [
+export const educacion = [
   {
-    key: 1, value:'Profesional'
+    key: 1, value:'Profesional', text: 'Profesional'
   },
   {
-    key: 2, value: 'Técnico'
+    key: 2, value: 'Técnico', text: 'Técnico'
   },
   {
-    key: 3, value: 'Media'
+    key: 3, value: 'Media', text: 'Media'
   },
   {
-    key: 4, value: 'Básica'
+    key: 4, value: 'Básica', text: 'Básica'
   },
   {
-    key: 5, value: 'No posee'
+    key: 5, value: 'No posee', text: 'No posee'
   }
 ]
 
-const renta = [
-  { key: 1, value: 'Fija'},
-  { key: 2, value: 'Variable'},
-  { key: 3, value: 'Boleta de Honorarios'}
+export const renta = [
+  { key: 1, value: 'Fija', text: 'Fija'},
+  { key: 2, value: 'Variable', text: 'Variable'},
+  { key: 3, value: 'Boleta de Honorarios', text: 'Boleta de Honorarios'}
 ]
 
 export class CreateCreditRequest extends Component {
