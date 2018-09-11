@@ -3,8 +3,8 @@ import axios from 'axios'
 const { REACT_APP_API_URL } = process.env
 
 class API {
-  static login({ credentials }){
-    return axios.post(`${REACT_APP_API_URL}/api/login`)
+  static login(body){
+    return axios.post(`${REACT_APP_API_URL}/api/login`, body)
   }
 
   static getCredits(){

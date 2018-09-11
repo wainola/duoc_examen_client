@@ -11,7 +11,7 @@ const initialState = {
 export default function(state = initialState, action){
   switch(action.type){
     case SUCCESS_LOCAL_LOGIN:
-      return { ...state, isAuthenticated: !state.isAuthenticated }
+      return { ...state, isAuthenticated: action.payload.data.auth, user: action.payload.data.user }
     case FAIL_LOCAL_LOGIN:
       return state
     case LOGOUT:

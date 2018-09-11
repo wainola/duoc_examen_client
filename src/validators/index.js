@@ -10,3 +10,8 @@ export const signinUserSchema = Joi.object().keys({
   password: Joi.string().required(),
   repeated_password: Joi.string().required()
 })
+
+export const loginSchema = Joi.object().keys({
+  rut: Joi.string().max(8).required(),
+  password: Joi.string().required()
+})

@@ -24,16 +24,6 @@ export const failGettingAllTheData = payload => ({
   payload
 })
 
-export const successLocalLogin = payload => ({
-  type: SUCCESS_LOCAL_LOGIN,
-  payload
-})
-
-export const failLocalLogin = payload => ({
-  type: FAIL_LOCAL_LOGIN,
-  payload
-})
-
 export const logout = () => ({
   type: LOGOUT
 })
@@ -47,9 +37,19 @@ export const getCreditData = () => dispatch => {
 
 export const localLogin = body => dispatch => {
   return API.login(body)
-    .then(res => dispatch(successLocalLogin({ data: res.data, status: res.status })))
+    .then(res => dispatch(successLocalLogin({ data: res.data })))
     .catch(res => dispatch(failLocalLogin(res)))
 }
+
+export const successLocalLogin = payload => ({
+  type: SUCCESS_LOCAL_LOGIN,
+  payload
+})
+
+export const failLocalLogin = payload => ({
+  type: FAIL_LOCAL_LOGIN,
+  payload
+})
 
 export const postUser = body => dispatch => {
   return API.postUser(body)
