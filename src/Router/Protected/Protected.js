@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import IndexGetCredit from '../../containers/GetCreditRequest/index'
 
 const Protected = ({ component: Component, isAuthenticated, ...rest }) => {
   console.log('protected', rest)

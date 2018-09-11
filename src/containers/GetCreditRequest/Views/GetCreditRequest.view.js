@@ -6,12 +6,10 @@ const GetCreditRequestView = props => {
   return (
     <div>
       <Grid verticalAlign='middle' textAlign='center' column='1'>
-        <Grid.Row>
+        <Grid.Row style={{ marginTop: '2.5rem' }}>
           <Grid.Column>
             <Header as='h3'>Estado de solicitudes</Header>
-            <h3>GET CREDITOS!!!</h3>
             <Button color='facebook' onClick={props.clickActionButtons} value='crear' as={Link} to='/protected/create-credit'>Crear solicitud de credito</Button>
-            <Button color='google plus' onClick={props.handleLogin}>Logout</Button>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>

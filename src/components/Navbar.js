@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { logout } from '../actions/index'
 
 export class Navbar extends Component {
   constructor(props){
@@ -22,6 +26,9 @@ export class Navbar extends Component {
   toggleVisibility = () => {
       this.setState({visible: !this.state.visible});
       this.props.sidePusher(!this.props.visible)
+  }
+  logoutn = () => {
+      this.props.logout()
   }
   render() {
     const { isAuthenticated } = this.props
@@ -51,7 +58,7 @@ export class Navbar extends Component {
                   color='blue'
                   name='Cerrar Sesión'
                   active={activeItem === 'Signin'}
-                  onClick={this.handleItemClick} />
+                  onClick={this.logout} />
               }
         </Menu>
       </div>
@@ -59,4 +66,8 @@ export class Navbar extends Component {
   }
 }
 
-export default Navbar
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({ logout }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(Navbar)
