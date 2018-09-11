@@ -20,6 +20,7 @@ import IndexSignin from '../containers/Signin/index'
 import CreateCredit from '../containers/CreateCreditRequest/index'
 import GetCredit from '../containers/GetCreditRequest/index'
 import EditCreditComp from '../containers/EditCredit/index'
+import DashboardComp from '../containers/UserDashboard/index'
 
 export class Router extends Component {
   constructor(props){
@@ -63,6 +64,7 @@ export class Router extends Component {
               <UnProtected location={location} exact path='/signin' component={IndexSignin} />
               
               {/* LOCATION IS THE KEY */}
+              <Protected location={location} exact path='/protected/dashboard' component={DashboardComp} />
               <Protected location={location} exact path='/protected/get-credit' component={GetCredit} />
               <Protected location={location} exact path='/protected/create-credit' component={CreateCredit} />
               <Protected location={location} exact path='/protected/edit-credit' component={EditCreditComp} />

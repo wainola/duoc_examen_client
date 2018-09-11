@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid, Responsive, Container, Form, Button, Segment } from 'semantic-ui-react'
 import swal from 'sweetalert2'
 import { withSwalInstance } from 'sweetalert2-react'
+import { Link } from 'react-router-dom'
 
 const SweetAlert = withSwalInstance(swal)
 
@@ -11,6 +12,14 @@ const SigninView = props => {
       <Responsive>
         <Container>
           <Grid>
+            <Grid.Row columns='2' stackable textAlign='center' style={{ paddingTop: '2.5rem' }}>
+              <Grid.Column>
+                <Button color='facebook' as={Link} to='/'>Volver a la página principal</Button>
+              </Grid.Column>
+              <Grid.Column>
+                <Button color='google plus' as={Link} to='/login'>Iniciar sesión</Button>
+              </Grid.Column>
+            </Grid.Row>
             <Grid.Row textAlign='left' stackable columns='1'>
               <Grid.Column>
                 <Segment raised>

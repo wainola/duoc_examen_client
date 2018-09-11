@@ -27,11 +27,13 @@ export class Navbar extends Component {
       this.setState({visible: !this.state.visible});
       this.props.sidePusher(!this.props.visible)
   }
-  logoutn = () => {
+  logout = () => {
+      console.log('this.logout')
       this.props.logout()
   }
   render() {
-    const { isAuthenticated } = this.props
+    console.log('this.props', this.props)
+    const { auth: { isAuthenticated } } = this.props
     const { activeItem } = this.state
     const { handleVisible } = this.props
     return (
@@ -48,17 +50,15 @@ export class Navbar extends Component {
                   name='Cerrar Sesión'
                   position='right'
                   active={activeItem === 'Logout'}
-                  onClick={this.handleItemClick}
+                  onClick={this.logout}
                       />
               :
               <Menu.Item
                   as={Link}
-                  to='/'
+                  to='/signin'
                   position='right'
-                  color='blue'
-                  name='Cerrar Sesión'
-                  active={activeItem === 'Signin'}
-                  onClick={this.logout} />
+                  name='Registrarse'
+                  active={activeItem === 'Signin'}/>
               }
         </Menu>
       </div>
@@ -66,8 +66,12 @@ export class Navbar extends Component {
   }
 }
 
+function mapStateToProps({ auth }){
+    return { auth }
+}
+
 function mapDispatchToProps(dispatch){
     return bindActionCreators({ logout }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
