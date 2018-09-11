@@ -63,7 +63,7 @@ export class Router extends Component {
               {/* LOCATION IS THE KEY */}
               {/* <Protected location={location} exact path='/protected/get-credit' component={IndexGetCredit} /> */}
               
-              <Protected location={location} exact path='/protected/create-credit-request' component={IndexSignin} />
+              <Protected location={location} exact path='/protected/create-credit-request' component={IndexCreateCreditRequest} />
 
 
               

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 const UnProtected = ({ auth: { isAuthenticated }, component: Component, ...rest}) => {
   // console.log('unprotected', rest)
+  console.log('isAuth', isAuthenticated)
   return (
     <div>
       <Route { ...rest} render={props => isAuthenticated ? <Redirect to='/protected/create-credit-request' /> : <Component { ...props } />} />
