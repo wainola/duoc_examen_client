@@ -6,7 +6,7 @@ import {
 export default function(state={}, action){
   switch(action.type){
     case POST_USER:
-      return { ...state, data: action.payload.data }
+      return { ...state, status: action.payload.data.status }
     case FAIL_POST_USER:
       return { ...state, data: action.payload }
     default:

@@ -1,10 +1,15 @@
 import React from 'react'
 import Signin from './Components/Signin'
 
-const IndexSignin = () => {
+const IndexSignin = props => {
+  console.log('index', props)
   return (
     <div>
-      <Signin />
+      <Signin 
+      match={props.match}
+      location={props.location}
+      history={props.history}
+      />
     </div>
   )
 }

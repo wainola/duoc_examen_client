@@ -7,5 +7,6 @@ export const signinUserSchema = Joi.object().keys({
   apellido_paterno: Joi.string().min(3).required(),
   apellido_materno: Joi.string().min(3).required(),
   fecha_nacimiento: Joi.string().required(),
-  password: Joi.string().required()
+  password: Joi.string().required(),
+  repeated_password: Joi.string().required()
 })

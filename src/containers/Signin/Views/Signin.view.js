@@ -34,7 +34,7 @@ const SigninView = props => {
                       <Form.Input type='password' placeholder='contraseña' label='Contraseña' name='password' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
-                      <Form.Input type='password' placeholder='contraseña' label='Repetir contraseña' name='repated_password' onChange={props.onChange}/>
+                      <Form.Input type='password' placeholder='contraseña' label='Repetir contraseña' name='repeated_password' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
                       <Button color='facebook'>Registrarse</Button>

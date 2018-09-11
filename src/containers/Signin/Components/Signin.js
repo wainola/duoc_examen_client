@@ -5,6 +5,7 @@ import { signinUserSchema } from '../../../validators/index'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { postUser } from '../../../actions/index'
+import uuid from 'uuid'
 
 export class Signin extends Component {
   constructor(props){
@@ -17,7 +18,8 @@ export class Signin extends Component {
         apellido_paterno: '',
         apellido_materno: '',
         fecha_nacimiento: '',
-        password: ''
+        password: '',
+        repeated_password: ''
       },
       errorSwal: false,
       successSwal: false,
@@ -27,6 +29,7 @@ export class Signin extends Component {
   onChange = e => {
     e.preventDefault()
     if((e.target.name === 'rut') && (e.target.value.split('.').length === 3 || e.target.value.split('.').length === 1)){
+      console.log('cleanID')
       const { rut, dv } = this.cleanID(e.target.value)
       this.setState({
         ...this.state,
@@ -37,9 +40,15 @@ export class Signin extends Component {
         }
       })
     } 
-    else if(e.target.name === 'password_repeated' && this.state.user.password !== ''){
+    else if(e.target.name === 'repeated_password' && this.state.user.password !== ''){
+      console.log('password matching')
       this.setState({
-        passwordMatch: e.target.value === this.state.user.password
+        ...this.state,
+        passwordMatch: e.target.value === this.state.user.password,
+        user: {
+          ...this.state.user,
+          [e.target.name]: e.target.value
+        }
       }, () => {
         console.log('passwordMatched? ', this.state.passwordMatch)
       })
@@ -63,9 +72,19 @@ export class Signin extends Component {
           errorSwal: !this.state.errorSwal
         })
       }
-
-      console.log('error::::::::::::::::', error)
-      console.log('VALUE', value)
+      const body = { new_user: {...this.state.user } }
+      const id = uuid.v4()
+      body.new_user.id = id
+      delete body.new_user.repeated_password
+      console.log('body to send', body)
+      this.props.postUser(body).then(() => {
+        console.log('posting user', this.props.user)
+        if(this.props.user.status === 201){
+          this.setState({
+            successSwal: !this.state.successSwal
+          })
+        }
+      })
     })
   }
   cleanID = rut => {
@@ -85,9 +104,12 @@ export class Signin extends Component {
   closeSwalSuccess = () => {
     this.setState({
       successSwal: !this.state.successSwal
+    }, () => {
+      this.props.history.push('/login')
     })
   }
   render() {
+    console.log('signin props', this.props)
     return (
       <div>
         <SigninView
