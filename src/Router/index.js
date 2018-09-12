@@ -65,8 +65,11 @@ export class Router extends Component {
               
               {/* LOCATION IS THE KEY */}
               <Protected location={location} exact path='/protected/dashboard' component={DashboardComp} />
+
               <Protected location={location} exact path='/protected/get-credit' component={GetCredit} />
+
               <Protected location={location} exact path='/protected/create-credit' component={CreateCredit} />
+              
               <Protected location={location} exact path='/protected/edit-credit' component={EditCreditComp} />
 
             </Sidebar.Pusher>

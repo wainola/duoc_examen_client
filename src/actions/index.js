@@ -5,24 +5,15 @@ import {
   FAIL_LOCAL_LOGIN,
   LOGOUT,
   GET_ALL_DATA,
-  FAIL_GET_ALL_DATA,
   POST_USER,
   FAIL_POST_USER,
-  REFRESH_AUTH
+  REFRESH_AUTH,
+  POST_CREDIT_REQUEST
 } from './types'
 
+// GOOGLE LOGIN
 export const successGoogleLogin = () => ({
   type: SUCCESS_GOOGLE_LOGIN
-})
-
-export const gettingAllTheData = payload => ({
-  type: GET_ALL_DATA,
-  payload
-})
-
-export const failGettingAllTheData = payload => ({
-  type: FAIL_GET_ALL_DATA,
-  payload
 })
 
 export const logout = () => ({
@@ -35,11 +26,18 @@ export const refreshAuth = () => ({
 
 // ASYNC ACTIONS AND THEIR DISPATCHERS
 
+// GETTING DATA
 export const getCreditData = () => dispatch => {
   return API.getCredits()
     .then(res => dispatch(gettingAllTheData({ data: res.data, status: res.status })))
 }
 
+export const gettingAllTheData = payload => ({
+  type: GET_ALL_DATA,
+  payload
+})
+
+// LOCAL LOGIN
 export const localLogin = body => dispatch => {
   return API.login(body)
     .then(res => dispatch(successLocalLogin({ data: res.data })))
@@ -56,6 +54,7 @@ export const failLocalLogin = payload => ({
   payload
 })
 
+// POST USER
 export const postUser = body => dispatch => {
   return API.postUser(body)
     .then(res => dispatch(successPostingUser({ data: res.data })))
@@ -69,5 +68,16 @@ export const successPostingUser = payload => ({
 
 export const failPostingUser = payload => ({
   type: FAIL_POST_USER,
+  payload
+})
+
+// CREATE CREDIT REQUEST
+export const postCreditRequest = body => dispatch => {
+  return API.postCreditRequest(body)
+    .then(res => dispatch(postingCreditRequest({ data: res.data })))
+}
+
+export const postingCreditRequest = payload => ({
+  type: POST_CREDIT_REQUEST,
   payload
 })

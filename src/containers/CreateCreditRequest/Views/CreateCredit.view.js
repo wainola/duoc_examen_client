@@ -1,6 +1,10 @@
 import React from 'react'
 import { Responsive, Container, Grid, Form, Segment, Header, Checkbox, Dropdown, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import swal from 'sweetalert2'
+import { withSwalInstance } from 'sweetalert2-react'
+
+const SweetAlert = withSwalInstance(swal)
 
 const CreateCreditView = props => {
   console.log('props', props.handleHijosWasTouched)
@@ -113,6 +117,12 @@ const CreateCreditView = props => {
                       <Button color='blue'>Guardar</Button>
                     </Form.Field>
                   </Form>
+                  <SweetAlert 
+                    show={props.errorSwal}
+                    title={'Alguno de los campos no se ingresó correctamente'}
+                    onConfirm={() => props.closeSwalError()}
+                    type={'error'}
+                    />
                 </Segment>
               </Grid.Column>
             </Grid.Row>

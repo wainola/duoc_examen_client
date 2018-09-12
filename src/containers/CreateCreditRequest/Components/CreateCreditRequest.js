@@ -5,6 +5,13 @@ import uuid from 'uuid'
 import moment from 'moment'
 import es from 'moment/locale/es'
 import CreateCreditView from '../Views/CreateCredit.view'
+import Joi from 'joi'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { userSchema } from '../../../validators/index'
+
+import { postCreditRequest } from '../../../actions/index'
 
 export const estadoCivil = [
   { key: 1, value: 'Soltero', text:'Soltero'},
@@ -32,7 +39,7 @@ export const educacion = [
     key: 5, value: 'No posee', text: 'No posee'
   }
 ]
-
+ 
 export const renta = [
   { key: 1, value: 'Fija', text: 'Fija'},
   { key: 2, value: 'Variable', text: 'Variable'},
@@ -53,7 +60,7 @@ export class CreateCreditRequest extends Component {
         fecha_nacimiento: '',
         sexo: '',
         estado_civil: '',
-        hijos: '',
+        hijos: 'no',
         telefono: '',
         email: '',
         direccion: '',
@@ -63,7 +70,8 @@ export class CreateCreditRequest extends Component {
         sueldo_liquido: '',
         enfermedad_cronica: 'no'
       },
-      handleHijosWasTouched: false
+      handleHijosWasTouched: false,
+      errorSwal: false
     }
   }
   onChange = e => {
@@ -181,8 +189,28 @@ export class CreateCreditRequest extends Component {
     e.preventDefault()
     const body = this.state.user
     console.log('body to send', body)
+    Joi.validate(this.state.user, userSchema, (err, value) => {
+      if(err !== null){
+        this.setState({
+          errorSwal: !this.state.errorSwal
+        })
+      }
+
+      const body = { user: { ...this.state.user } }
+      const id = uuid.v4()
+      body.user.id = id
+      this.props.postCreditRequest(body).then(() => {
+        console.log('posting credit request', this.props.credit)
+      })
+    })
+  }
+  closeSwalError = () => {
+    this.setState({
+      errorSwal: !this.state.errorSwal
+    })
   }
   render() {
+    console.log('this.props', this.props)
     return (
       <div>
         <CreateCreditView 
@@ -200,10 +228,19 @@ export class CreateCreditRequest extends Component {
           handleEducacion={this.handleEducacion}
           handleRenta={this.handleRenta}
           handleEnfermedad={this.handleEnfermedad}
+          errorSwal={this.state.errorSwal}
+          closeSwalError={this.closeSwalError}
         />
       </div>
     )
   }
 }
 
-export default CreateCreditRequest
+function mapStateToProps({ credit }){
+  return { credit }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ postCreditRequest }, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CreateCreditRequest)

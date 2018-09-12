@@ -16,6 +16,10 @@ class API {
     static postUser(body){
       return axios.post(`${REACT_APP_API_URL}/api/signup`, body)
     }
+
+    static postCreditRequest(body){
+      return axios.post(`${REACT_APP_API_URL}/api/user`, body)
+    }
 }
 
 export default API
