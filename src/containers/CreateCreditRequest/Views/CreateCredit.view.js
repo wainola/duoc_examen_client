@@ -10,10 +10,10 @@ const CreateCreditView = props => {
           <Grid>
            <Grid.Row columns={2} textAlign='center' style={{ paddingTop: '2.5rem' }}>
             <Grid.Column>
-              <Button as={Link} to='/protected/get-credit'>Ver créditos</Button>
+              <Button color='facebook' as={Link} to='/protected/get-credit'>Ver créditos</Button>
             </Grid.Column>
             <Grid.Column>
-              <Button as={Link} to='/protected/user-info'>Ver datos de usuarios</Button>
+              <Button color='google plus' as={Link} to='/protected/user-info'>Ver datos de usuarios</Button>
             </Grid.Column>
            </Grid.Row>
             <Grid.Row columns={1}>
