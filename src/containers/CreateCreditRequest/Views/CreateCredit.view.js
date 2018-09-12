@@ -3,6 +3,7 @@ import { Responsive, Container, Grid, Form, Segment, Header, Checkbox, Dropdown,
 import { Link } from 'react-router-dom'
 
 const CreateCreditView = props => {
+  console.log('props', props.handleHijosWasTouched)
   return (
     <div>
       <Responsive>
@@ -19,29 +20,34 @@ const CreateCreditView = props => {
             <Grid.Row columns={1}>
               <Grid.Column>
                 <Segment raised>
-                  <Form style={{ heigth: '1500px' }}>
+                  <Form onSubmit={props.onSubmit} style={{ heigth: '1500px' }}>
                     <Header as='h3'>Crear solicitud</Header>
                     <Form.Field>
+                      {/* RUT */}
                       <Form.Input type='text' placeholder='rut' label='Rut' name='rut' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* NOMBRE */}
                       <Form.Input type='text' placeholder='nombre' label='Nombre' name='nombre' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* APELLIDO PATERNO */}
                       <Form.Input type='text' placeholder='apellido paterno' label='Apellido Paterno' name='apellido_paterno' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* APELLIDO MATERNO */}
                       <Form.Input type='text' placeholder='apellido materno' label='Apellido Materno' name='apellido_materno' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* FECHA NACIMIENTO */}
                       <Form.Input type='date' placeholder='DD/MM/YYYY' label='Fecha de Nacimiento' name='fecha_nacimiento' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* SEXO */}
                       <label>Sexo</label>
                       <Checkbox
                         radio
                         label='F'
-                        name='checkboxRadioGroup'
                         value='F'
                         onChange={props.handleSex}
                       />
@@ -49,50 +55,55 @@ const CreateCreditView = props => {
                       <Checkbox
                       radio
                       label='M'
-                      name='checkboxRadioGroup'
                       value='M'
                       onChange={props.handleSex}
                       />
                     </Form.Field>
                     <Form.Field>
+                      {/* ESTADO CIVIL */}
                       <Dropdown placeholder='Estado civil' fluid selection options={props.estadoCivil} label='Estado Civil' pointing='bottom' onChange={props.handleEstadoCivil}/>
                     </Form.Field>
                     <Form.Field>
+                      {/*  HIJOS */}
                       <label>Hijos</label>
                       <Checkbox
-                      radio
-                      name='checkboxRadioGroup'
-                      value='M'
+                      toggle
                       onChange={props.handleHijos}
                       />
                       <br/>
-                      <Form.Input type='text' placeholder='cantidad hijos' name='hijos' onChange={props.onChange}/>
+                      {/* HIJOS INPUT */}
+                      { props.handleHijosWasTouched && (<Form.Input type='text' placeholder='cantidad hijos' name='hijos' label='Cantidad de hijos' onChange={props.onChange}/>)}
                     </Form.Field>
                     <Form.Field>
+                      {/* TELEFONO */}
                       <Form.Input type='text' placeholder='telefono' label='Teléfono' name='telefono' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* CORREO */}
                       <Form.Input type='text' placeholder='email@mail.com' label='Correo electrónico' name='email' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* DIRECCION */}
                       <Form.Input type='text' label='Dirección' name='direccion' placeholder='ingrese dirección' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* COMUNAS */}
                       <Dropdown placeholder='Comuna' fluid selection options={props.comunas} search label='Comunas' pointing='bottom' onChange={props.handleComunas}/>
                     </Form.Field>
                     <Form.Field>
-                      <Dropdown placeholder='Estado civil' fluid selection options={props.estadoCivil} label='Comunas' pointing='bottom' onChange={props.handleComunas}/>
-                    </Form.Field>
-                    <Form.Field>
+                      {/* EDUCACION */}
                       <Dropdown placeholder='Educación' fluid selection options={props.educacion} onChange={props.handleEducacion}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* RENTA */}
                       <Dropdown placeholder='Renta' fluid selection options={props.renta} onChange={props.handleRenta}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* SUELDO LIQUIDO */}
                       <Form.Input type='text' placeholder='sólo números' label='Sueldo líquido' name='sueldo_liquido' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
+                      {/* ENFERMEDAD CRONICA */}
                       <label>Pacede alguna enfermedad</label>
                       <Checkbox
                         onChange={props.handleEnfermedad}

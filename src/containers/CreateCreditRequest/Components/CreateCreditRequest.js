@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { comunas } from '../../../data/comunas'
 import { flattenDeep } from 'lodash'
-import { Button, Grid } from 'semantic-ui-react';
-import CreateCreditView from '../Views/CreateCredit.view';
+import uuid from 'uuid'
+import moment from 'moment'
+import es from 'moment/locale/es'
+import CreateCreditView from '../Views/CreateCredit.view'
 
 export const estadoCivil = [
   { key: 1, value: 'Soltero', text:'Soltero'},
@@ -40,30 +42,145 @@ export const renta = [
 export class CreateCreditRequest extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      credit: {
+        id: '',
+        rut: '',
+        dv: '',
+        nombre: '',
+        apellido_paterno: '',
+        apellido_materno: '',
+        fecha_nacimiento: '',
+        sexo: '',
+        estado_civil: '',
+        hijos: '',
+        telefono: '',
+        email: '',
+        direccion: '',
+        comuna: '',
+        educacion: '',
+        renta: '',
+        sueldo_liquido: '',
+        enfermedad_cronica: 'no'
+      },
+      handleHijosWasTouched: false
+    }
   }
   onChange = e => {
     e.preventDefault()
+    console.log('e.target.value', moment(e.target.value).format('l'))
+    if((e.target.name === 'rut') && (e.target.value.split('.').length === 3 || e.target.value.split('.').length === 1)){
+      const { rut, dv } = this.cleanID(e.target.value)
+      this.setState({
+        ...this.state,
+        user: {
+          ...this.state.user,
+          rut,
+          dv
+        }
+      })
+    } 
+    else if (e.target.name === 'fecha_nacimiento') {
+      this.setState({
+        ...this.state,
+        user: {
+          ...this.state.user,
+          [e.target.name]: moment(e.target.value).format('l')
+        }
+      })
+    }
+    else {
+      this.setState({
+        ...this.state,
+        user: {
+          ...this.state.user,
+          [e.target.name]: e.target.value
+        }
+      })
+    }
   }
   handleSex = e => {
     e.preventDefault()
+    this.setState({
+      ...this.state,
+      user: {
+        ...this.state.user,
+        sexo: e.target.textContent
+      }
+    })
   }
-  handleEstadoCivil = e => {
+  handleEstadoCivil = (e, { value }) => {
     e.preventDefault()
+    
+    this.setState({
+      ...this.state,
+      user: {
+        ...this.state.user,
+        estado_civil: value
+      }
+    })
   }
   handleHijos = e => {
     e.preventDefault()
+    console.log('handleHijos')
+    this.setState({
+      ...this.state,
+      handleHijosWasTouched: !this.state.handleHijosWasTouched
+    })
   }
-  handleComunas = e => {
+  handleComunas = (e, { value }) => {
     e.preventDefault()
+    this.setState({
+      ...this.state,
+      user:{
+        ...this.state.user,
+        comuna: value
+      }
+    })
   }
-  handleEducacion = e => {
+  handleEducacion = (e, { value }) => {
     e.preventDefault()
+    this.setState({
+      ...this.state,
+      user:{
+        ...this.state.user,
+        educacion: value
+      }
+    })
   }
-  handleRenta = e => {
+  handleRenta = (e, { value }) => {
     e.preventDefault()
+    this.setState({
+      ...this.state,
+      user:{
+        ...this.state.user,
+        renta: value
+      }
+    })
   }
   handleEnfermedad = e => {
     e.preventDefault()
+    this.setState({
+      ...this.state,
+      user:{
+        ...this.state.user,
+        enfermedad_cronica: 'si'
+      }
+    })
+  }
+  cleanID = rut => {
+    if (rut.search('-') !== -1){
+        const r = rut.substring(0, rut.search('-')).split('.').join('')
+        const d = rut.substring(rut.search('-')+1)
+        return { rut: r, dv: d }
+    } else {
+        return { rut: '', dv: '' }
+    }
+  }
+  onSubmit = e => {
+    e.preventDefault()
+    const body = this.state.user
+    console.log('body to send', body)
   }
   render() {
     return (
@@ -73,6 +190,16 @@ export class CreateCreditRequest extends Component {
           comunas={c}
           educacion={educacion}
           renta={renta}
+          onSubmit={this.onSubmit}
+          onChange={this.onChange}
+          handleSex={this.handleSex}
+          handleEstadoCivil={this.handleEstadoCivil}
+          handleHijos={this.handleHijos}
+          handleHijosWasTouched={this.state.handleHijosWasTouched}
+          handleComunas={this.handleComunas}
+          handleEducacion={this.handleEducacion}
+          handleRenta={this.handleRenta}
+          handleEnfermedad={this.handleEnfermedad}
         />
       </div>
     )
