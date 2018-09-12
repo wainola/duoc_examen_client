@@ -1,32 +1,47 @@
 import React from 'react'
-import { Responsive, Container, Grid, Segment, Card, Image, Icon } from 'semantic-ui-react'
+import { Responsive, Container, Grid, Segment, Card, Icon, Header, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import moment from 'moment'
+import es from 'moment/locale/es'
 
 const DashboardView = props => {
+  // console.log(momentES)
   return (
     <Responsive>
       <Container>
-        <Grid>
-          <Grid.Row columns='2' stackable textAlign='center'>
+        <Grid stackable>
+          <Grid.Row columns='2' textAlign='center' style={{ paddingTop: '2.5rem'}}>
             <Grid.Column>
-              <Card >
-                <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
-                <Card.Content>
-                  <Card.Header>Matthew</Card.Header>
-                  <Card.Meta>
-                    <span className='date'>Joined in 2015</span>
-                  </Card.Meta>
-                  <Card.Description>Matthew is a musician living in Nashville.</Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <a>
-                    <Icon name='user' />
-                    22 Friends
-                  </a>
-                </Card.Content>
-              </Card>
+              <Segment raised fluid>
+                <Header as='h2'>Bienvenido!</Header>
+                <Card centered color='blue'>
+                  <Card.Content>
+                    <Card.Header><Icon name='user'/>{props.user.nombre} {props.user.apellido_paterno}  {props.user.apellido_materno}</Card.Header>
+                    <Card.Meta>
+                      <span className='date'>
+                      <br/>
+                      Sesión iniciada el {moment().format('LL')}</span>
+                    </Card.Meta>
+                  </Card.Content>
+                  <Card.Content extra>
+                    <a>
+                      <Icon name='credit card alternative' />
+                      Numero de creditos
+                    </a>
+                  </Card.Content>
+                </Card>
+              </Segment>
             </Grid.Column>
             <Grid.Column>
-              Acciones
+              <Segment raised fluid style={{ height: '220.717px'}}>
+                <Header as='h2'><Icon name='exclamation triangle' />Acciones</Header>
+                <Grid textAlign='center'>
+                  <Grid.Column>
+                    <Button color='facebook' as={Link} to='/protected/create-credit' >Crear solicitud de crédito</Button>
+                    <Button color='google plus' as={Link} to='/protected/show-status-request'>Revisar estado de solicitud</Button>
+                  </Grid.Column>
+                </Grid>
+              </Segment>
             </Grid.Column>
           </Grid.Row>
         </Grid>
