@@ -20,6 +20,10 @@ class API {
     static postCreditRequest(body){
       return axios.post(`${REACT_APP_API_URL}/api/user`, body)
     }
+    
+    static loginExecutive(body){
+      return axios.post(`${REACT_APP_API_URL}/api/login-executive`, body)
+    }
 }
 
 export default API

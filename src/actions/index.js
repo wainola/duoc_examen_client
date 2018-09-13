@@ -8,7 +8,8 @@ import {
   POST_USER,
   FAIL_POST_USER,
   REFRESH_AUTH,
-  POST_CREDIT_REQUEST
+  POST_CREDIT_REQUEST,
+  LOGIN_EXECUTIVE
 } from './types'
 
 // GOOGLE LOGIN
@@ -81,3 +82,9 @@ export const postingCreditRequest = payload => ({
   type: POST_CREDIT_REQUEST,
   payload
 })
+
+//  LOGIN EXECUTIVE
+export const loginExecutive = body => dispatch => {
+  return API.loginExecutive(body)
+    .then(res => dispatch(successLoginExecutive({ data: res.data })))
+}

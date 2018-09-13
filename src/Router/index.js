@@ -22,6 +22,9 @@ import GetCredit from '../containers/GetCreditRequest/index'
 import EditCreditComp from '../containers/EditCredit/index'
 import DashboardComp from '../containers/UserDashboard/index'
 
+import ExecutiveComponent from '../containers/Executive/index'
+import HomeExecutive from '../containers/Executive/Components/HomeExecutive'
+
 export class Router extends Component {
   constructor(props){
     super(props)
@@ -53,6 +56,9 @@ export class Router extends Component {
             <Menu.Item as={Link} to='/signin' onClick={this.handleVisible}>
               <Icon name='user' /> Crear usuario
             </Menu.Item>
+            <Menu.Item as={Link} to='/executive' onClick={this.handleVisible}>
+              <Icon name='user plus' /> Ingreso ejecutivos
+            </Menu.Item>
           </Sidebar>
             <Sidebar.Pusher>
               <Navbar visible={visible} handleVisible={this.handleVisible}/>
@@ -62,6 +68,7 @@ export class Router extends Component {
               <UnProtected location={location} exact path='/' component={IndexHome} />
               <UnProtected location={location} exact path='/login' component={IndexLogin} />
               <UnProtected location={location} exact path='/signin' component={IndexSignin} />
+              <UnProtected location={location} exact path='/executive' component={ExecutiveComponent} />
               
               {/* LOCATION IS THE KEY */}
               <Protected location={location} exact path='/protected/dashboard' component={DashboardComp} />
@@ -71,6 +78,9 @@ export class Router extends Component {
               <Protected location={location} exact path='/protected/create-credit' component={CreateCredit} />
               
               <Protected location={location} exact path='/protected/edit-credit' component={EditCreditComp} />
+
+              <Protected location={location} exact path='/protected/executive' component={HomeExecutive} />
+
 
             </Sidebar.Pusher>
           </Sidebar.Pushable>
