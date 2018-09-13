@@ -13,9 +13,9 @@ const CreateCreditView = props => {
       <Responsive>
         <Container>
           <Grid>
-           <Grid.Row columns={2} textAlign='center' style={{ paddingTop: '2.5rem' }}>
+           <Grid.Row columns={!localStorage.user ? 2 : 1 } textAlign='center' style={{ paddingTop: '2.5rem' }}>
             <Grid.Column>
-              <Button color='facebook' as={Link} to='/protected/get-credit'>Ver solicitudes de crédito</Button>
+              { !localStorage.user  && (<Button color='facebook' as={Link} to='/protected/get-credit'>Ver solicitudes de crédito</Button>)}
             </Grid.Column>
             <Grid.Column>
               <Button color='google plus' as={Link} to='/protected/dashboard'>Volver a la página principal</Button>
