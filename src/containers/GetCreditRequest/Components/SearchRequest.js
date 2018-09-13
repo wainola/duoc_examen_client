@@ -48,6 +48,7 @@ export class SearchRequest extends Component {
   }
   onSubmit = e => {
     e.preventDefault()
+    console.log('e.target', e.target)
     if(this.state.rut !== ''){
       // console.log('this.state rut', this.state.rut)
       this.searchByRut(this.state.rut)
@@ -65,7 +66,7 @@ export class SearchRequest extends Component {
     }
   }
   searchByDate = (startDate, endDate) => {
-
+    console.log('searchByDate')
     if(this.props.credit.data){
 
       const r = this.state.orderListByDate.filter(item => moment(item.fecha_creacion).isBetween(startDate, endDate)).map(item => item.id)
@@ -79,6 +80,16 @@ export class SearchRequest extends Component {
       
     }
   }
+  BorrarFiltros = e => {
+    e.preventDefault()
+    this.setState({
+      rut: '',
+      startDate: '',
+      endDate: '',
+      searchResultByRut: [],
+      searchResultByDate: []
+    })
+  }
   render() {
     // console.log('search props')
     return (
@@ -90,6 +101,7 @@ export class SearchRequest extends Component {
         onSubmit={this.onSubmit}
         searchResultByRut={this.state.searchResultByRut}
         searchResultByDate={this.state.searchResultByDate}
+        BorrarFiltros={this.BorrarFiltros}
         />
       </div>
     )

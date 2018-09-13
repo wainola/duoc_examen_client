@@ -43,6 +43,7 @@ const SearchRequestView = props => {
               <Grid.Column>
                 <Segment raised>
                   <Header as='h3'>Resultado</Header>
+                  <Button color='google plus' onClick={props.BorrarFiltros}>Borrar filtro</Button>
                   { props.searchResultByRut.length !== 0 || props.searchResultByDate.length !== 0 ?
                   (
                     <Table celled selectable>
