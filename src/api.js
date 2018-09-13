@@ -26,7 +26,6 @@ class API {
     }
 
     static deleting(body){
-      console.log('id a borrar', body)
       return axios.delete(`${REACT_APP_API_URL}/api/user`, { data: {body }})
     }
 }

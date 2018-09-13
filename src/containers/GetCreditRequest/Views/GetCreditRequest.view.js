@@ -1,6 +1,10 @@
 import React from 'react'
 import { Grid, Header, Button, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import swal from 'sweetalert2'
+import { withSwalInstance } from 'sweetalert2-react'
+
+const SweetAlert = withSwalInstance(swal)
 
 const GetCreditRequestView = props => {
   console.log('props', props)
@@ -52,6 +56,12 @@ const GetCreditRequestView = props => {
                 }
               </Table.Body>
             </Table>
+            <SweetAlert 
+              show={props.deleted}
+              title={'Solicitud se borro con éxito'}
+              onConfirm={() => props.closeSwal()}
+              type={'success'}
+              />
           </Grid.Column>
         </Grid.Row>
       </Grid>

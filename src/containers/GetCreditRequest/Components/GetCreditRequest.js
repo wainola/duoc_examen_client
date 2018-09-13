@@ -9,13 +9,14 @@ import { getCreditData, sendDataToShow, deletingRequest } from '../../../actions
 export class GetCreditRequest extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      deleted: false
+    }
   }
   componentWillMount(){
     this.props.getCreditData()
   }
   sendCreditData = item => {
-    // e.preventDefault()
-    console.log('data')
     this.props.sendDataToShow(item)
   }
   deleting = id => {
@@ -23,10 +24,20 @@ export class GetCreditRequest extends Component {
     const body = { user: {
       id
     }}
-    this.props.deletingRequest(body)
+    this.props.deletingRequest(body).then(() => {
+      this.setState({
+        deleted: !this.state.deleted
+      })
+    })
+  }
+  closeSwal = () => {
+    this.setState({
+      deleted: !this.state.deleted
+    }, () => {
+      this.props.getCreditData()
+    })
   }
   render() {
-    console.log('this.props getCredit', this.props)
     let creditData
     if(!isEmpty(this.props.credit)){
       creditData = this.props.credit.data_to_display
@@ -37,6 +48,8 @@ export class GetCreditRequest extends Component {
         creditData={creditData}
         sendCreditData={this.sendCreditData}
         deleting={this.deleting}
+        deleted={this.state.deleted}
+        closeSwal={this.closeSwal}
         />
       </div>
     )
