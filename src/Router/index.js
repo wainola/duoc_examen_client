@@ -40,7 +40,6 @@ export class Router extends Component {
   render() {
     const { location, match, history, google: { google_auth}, auth: { isAuthenticated } } = this.props
     const { visible } = this.state
-    console.log(this.props)
     return (
       <div>
         <Sidebar.Pushable style={{ minHeight: window.innerHeight }}>

@@ -25,7 +25,6 @@ export class Executive extends Component {
         if((e.target.name === 'rut') && (e.target.value.split('.').length === 3 || e.target.value.split('.').length === 1)){
           const r = e.target.value
           const rut = r.substring(0, r.search('-'))
-          console.log('rut', rut)
           this.setState({
             ...this.state,
             user: {
@@ -46,9 +45,7 @@ export class Executive extends Component {
       onSubmit = e => {
         e.preventDefault()
         const body = { credentials: { ...this.state.user } }
-        console.log('body to send', body)
         this.props.loginExecutive(body).then(() => {
-          console.log('logeando executive', this.props)
           if(this.props.executive.status === 200){
             this.props.changeLoginStatus()
           }
@@ -62,7 +59,6 @@ export class Executive extends Component {
         })
       }
   render() {
-    console.log('executive this.props', this.props)  
     return (
       <div>
         <ExecutiveView 

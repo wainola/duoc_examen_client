@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import { postCreditRequest } from '../../actions/index'
 
 const CreateCredit = props => {
-  console.log('create credit request', props)
   return (
     <div>
       <CreateCreditRequest 

@@ -130,7 +130,6 @@ export class CreateCreditRequest extends Component {
   }
   handleHijos = e => {
     e.preventDefault()
-    console.log('handleHijos')
     this.setState({
       ...this.state,
       handleHijosWasTouched: !this.state.handleHijosWasTouched
@@ -188,8 +187,6 @@ export class CreateCreditRequest extends Component {
   onSubmit = e => {
     e.preventDefault()
     const body = { user: { ...this.state.credit } }
-    console.log('body', body)
-    console.log('erroSwal', this.state.errorSwal)
     const id = uuid.v4()
     body.user.id = id
     body.user.role = 'user'
@@ -221,8 +218,6 @@ export class CreateCreditRequest extends Component {
     })
   }
   render() {
-    console.log('this.props', this.props)
-    console.log('connect', bindActionCreators)
     return (
       <div>
         <CreateCreditView 

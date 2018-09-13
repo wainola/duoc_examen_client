@@ -29,7 +29,6 @@ export class Signin extends Component {
   onChange = e => {
     e.preventDefault()
     if((e.target.name === 'rut') && (e.target.value.split('.').length === 3 || e.target.value.split('.').length === 1)){
-      console.log('cleanID')
       const { rut, dv } = this.cleanID(e.target.value)
       this.setState({
         ...this.state,
@@ -65,7 +64,6 @@ export class Signin extends Component {
   }
   onSubmit = e => {
     e.preventDefault()
-    console.log('submit', this.state.user)
     Joi.validate(this.state.user, signinUserSchema, (error, value) => {
       if(error !== null){
         this.setState({
@@ -76,9 +74,7 @@ export class Signin extends Component {
       const id = uuid.v4()
       body.new_user.id = id
       delete body.new_user.repeated_password
-      console.log('body to send', body)
       this.props.postUser(body).then(() => {
-        console.log('posting user', this.props.user)
         if(this.props.user.status === 201){
           this.setState({
             successSwal: !this.state.successSwal
@@ -109,7 +105,6 @@ export class Signin extends Component {
     })
   }
   render() {
-    console.log('signin props', this.props)
     return (
       <div>
         <SigninView

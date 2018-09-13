@@ -3,7 +3,6 @@ import { Responsive, Container, Grid, Segment, Header, Form, Button, Table, Labe
 import { Link } from 'react-router-dom'
 
 const SearchRequestView = props => {
-  console.log('props', props.searchResultByDate)
   return (
     <div>
       <Responsive>

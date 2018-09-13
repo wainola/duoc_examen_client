@@ -18,13 +18,9 @@ export class Login extends Component {
     }
   }
   responseGoogle = response => {
-    console.log('response', response)
     if(response.tokenObj){
       this.props.successGoogleLogin(response)
     }
-  }
-  componentWillReceiveProps(nextProps){
-    console.log('nextProps', nextProps)
   }
   handleChangeAuth = e => {
     e.preventDefault()

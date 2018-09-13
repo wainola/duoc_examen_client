@@ -20,7 +20,6 @@ export class GetCreditRequest extends Component {
     this.props.sendDataToShow(item)
   }
   deleting = id => {
-    console.log('id', id)
     const body = { user: {
       id
     }}

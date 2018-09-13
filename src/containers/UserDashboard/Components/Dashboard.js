@@ -39,7 +39,6 @@ export class Dashboard extends Component {
     }
   }
   render() {
-    console.log('dashboard', this.state)
     return (
       <div>
         <DashboardView user={this.state.user} executiveLogged={this.state.executiveLogged} userLogged={this.state.userLogged}/>

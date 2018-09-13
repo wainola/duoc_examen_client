@@ -15,7 +15,6 @@ export class Navbar extends Component {
     }
   }
   handleItemClick = (e, { name }) => {
-    console.log('e.target.text', e.target.text)
     if(e.target.text === 'Logout'){
         this.props.logout()
     }
@@ -28,11 +27,9 @@ export class Navbar extends Component {
       this.props.sidePusher(!this.props.visible)
   }
   logout = () => {
-      console.log('this.logout')
       this.props.logout()
   }
   render() {
-    console.log('this.props', this.props)
     const { auth: { isAuthenticated } } = this.props
     const { activeItem } = this.state
     const { handleVisible } = this.props

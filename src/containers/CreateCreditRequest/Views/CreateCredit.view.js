@@ -7,7 +7,6 @@ import { withSwalInstance } from 'sweetalert2-react'
 const SweetAlert = withSwalInstance(swal)
 
 const CreateCreditView = props => {
-  console.log('props', props.handleHijosWasTouched)
   return (
     <div>
       <Responsive>

@@ -35,7 +35,6 @@ export class SearchRequest extends Component {
   }
   handleStartDate = e => {
     e.preventDefault()
-    console.log('startDate', moment(e.target.value).format('DD/MM/YYYY'))
     this.setState({
       startDate: moment(e.target.value).format('YYYY-MM-DD')
     })
@@ -48,7 +47,6 @@ export class SearchRequest extends Component {
   }
   onSubmit = e => {
     e.preventDefault()
-    console.log('e.target', e.target)
     if(this.state.rut !== ''){
       // console.log('this.state rut', this.state.rut)
       this.searchByRut(this.state.rut)
@@ -66,14 +64,12 @@ export class SearchRequest extends Component {
     }
   }
   searchByDate = (startDate, endDate) => {
-    console.log('searchByDate')
     if(this.props.credit.data){
 
       const r = this.state.orderListByDate.filter(item => moment(item.fecha_creacion).isBetween(startDate, endDate)).map(item => item.id)
 
       const rDefinitive = this.props.credit.data.filter((item, idx) => item.id === r[idx])
 
-      console.log('rDefinitive', rDefinitive)
       this.setState({
         searchResultByDate: rDefinitive
       })
