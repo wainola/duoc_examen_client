@@ -14,7 +14,9 @@ export class Dashboard extends Component {
         apellido_paterno:'',
         apellido_materno:'',
         rut:''
-      }
+      },
+      executiveLogged: false,
+      userLogged: false
     }
   }
   componentWillMount(){
@@ -26,12 +28,21 @@ export class Dashboard extends Component {
         }
       })
     }
+    if(localStorage.executive){
+      const user = JSON.parse(localStorage.getItem('executive'))
+      this.setState({
+        user:{
+          ...user
+        },
+        executiveLogged: !this.state.executiveLogged
+      })
+    }
   }
   render() {
-    console.log('dashboard', this.props)
+    console.log('dashboard', this.state)
     return (
       <div>
-        <DashboardView user={this.state.user}/>
+        <DashboardView user={this.state.user} executiveLogged={this.state.executiveLogged} userLogged={this.state.userLogged}/>
       </div>
     )
   }

@@ -13,7 +13,7 @@ const DashboardView = props => {
           <Grid.Row columns='2' textAlign='center' style={{ paddingTop: '2.5rem'}}>
             <Grid.Column>
               <Segment raised fluid>
-                <Header as='h2'>Bienvenido!</Header>
+                <Header as='h2'>{props.executiveLogged ? 'Bienvenido ejecutivo' : 'Bienvenido!'}</Header>
                 <Card centered color='blue'>
                   <Card.Content>
                     <Card.Header><Icon name='user'/>{props.user.nombre} {props.user.apellido_paterno}  {props.user.apellido_materno}</Card.Header>
@@ -38,7 +38,8 @@ const DashboardView = props => {
                 <Grid textAlign='center'>
                   <Grid.Column>
                     <Button color='facebook' as={Link} to='/protected/create-credit' >Crear solicitud de crédito</Button>
-                    <Button color='google plus' as={Link} to='/protected/show-status-request'>Revisar estado de solicitud</Button>
+                    { props.executiveLogged && <Button color='google plus' as={Link} to='/protected/get-credit'>Ver solicitudes de crédito</Button>}
+                    { props.userLogged && <Button color='google plus' as={Link} to='/protected/show-status-request'>Revisar estado de solicitud</Button>}
                   </Grid.Column>
                 </Grid>
               </Segment>

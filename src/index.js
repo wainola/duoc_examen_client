@@ -22,7 +22,7 @@ const store = createStore(
   composeWithDevTools(enhancers)
 )
 
-if(localStorage.user){
+if(localStorage.user || localStorage.executive){
   store.dispatch(refreshAuth())
 }
 
