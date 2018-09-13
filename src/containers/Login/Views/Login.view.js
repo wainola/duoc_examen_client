@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Form, Grid, Container, Responsive, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Container, Responsive, Segment, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import GoogleLogin from 'react-google-login';
 
 import swal from 'sweetalert2'
 import { withSwalInstance } from 'sweetalert2-react'
@@ -8,6 +9,7 @@ import { withSwalInstance } from 'sweetalert2-react'
 const SweetAlert = withSwalInstance(swal)
 
 const LoginView = props => {
+  const { REACT_APP_GOOGLE_CLIENT_ID } = process.env
   return (
     <div>
       <Responsive>
@@ -30,6 +32,12 @@ const LoginView = props => {
                     </Form.Field>
                     <Form.Field>
                       <Button color='facebook'>Ingresar</Button>
+                      <GoogleLogin
+                        clientId={`${REACT_APP_GOOGLE_CLIENT_ID}`}
+                        buttonText="Ingresar con Google"
+                        onSuccess={props.responseGoogle}
+                        onFailure={props.responseGoogleFail}
+                      />
                     </Form.Field>
                   </Form>
                 </Segment>

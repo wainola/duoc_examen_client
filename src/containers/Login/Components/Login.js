@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import LoginView from '../Views/Login.view'
 import { loginSchema } from '../../../validators/index'
 
-import { localLogin } from '../../../actions/index'
+import { localLogin, successGoogleLogin } from '../../../actions/index'
 
 export class Login extends Component {
   constructor(props){
@@ -15,6 +15,12 @@ export class Login extends Component {
         password: ''
       },
       errorSwal: false
+    }
+  }
+  responseGoogle = response => {
+    console.log('response', response)
+    if(response.tokenObj){
+      this.props.successGoogleLogin(response)
     }
   }
   componentWillReceiveProps(nextProps){
@@ -73,6 +79,7 @@ export class Login extends Component {
         onChange={this.onChange}
         errorSwal={this.state.errorSwal}
         closeSwal={this.closeSwal}
+        responseGoogle={this.responseGoogle}
         />
       </div>
     )
@@ -84,7 +91,7 @@ function mapStateToProps({ auth }){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ localLogin }, dispatch)
+  return bindActionCreators({ localLogin, successGoogleLogin }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

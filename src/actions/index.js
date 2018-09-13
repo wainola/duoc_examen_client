@@ -16,8 +16,9 @@ import {
 } from './types'
 
 // GOOGLE LOGIN
-export const successGoogleLogin = () => ({
-  type: SUCCESS_GOOGLE_LOGIN
+export const successGoogleLogin = payload => ({
+  type: SUCCESS_GOOGLE_LOGIN,
+  payload
 })
 
 export const logout = () => ({

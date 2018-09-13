@@ -3,7 +3,8 @@ import {
   FAIL_LOCAL_LOGIN,
   LOGOUT,
   REFRESH_AUTH,
-  CHANGE_LOGIN_STATUS
+  CHANGE_LOGIN_STATUS,
+  SUCCESS_GOOGLE_LOGIN
 } from '../actions/types'
 
 const initialState = {
@@ -19,6 +20,7 @@ export default function(state = initialState, action){
       return state
     case LOGOUT:
       localStorage.removeItem('user')
+      localStorage.removeItem('executive')
       return { ...state, isAuthenticated: !state.isAuthenticated }
     case REFRESH_AUTH:
       return { ...state, isAuthenticated: !state.isAuthenticated }
@@ -27,6 +29,14 @@ export default function(state = initialState, action){
     //   localStorage.setItem('executive', JSON.stringify(action.payload.data.user))
     //   return { isAuthenticated: action.payload.data.auth, status: action.payload.data.status, executive: action.payload.data.user }
     case CHANGE_LOGIN_STATUS:
+      return { ...state, isAuthenticated: !state.isAuthenticated }
+    case SUCCESS_GOOGLE_LOGIN:
+      const user = {
+        nombre: `${action.payload.profileObj.name.split(' ')[0]} ${action.payload.profileObj.name.split(' ')[1]}`,
+        apellido_paterno: `${action.payload.profileObj.name.split(' ')[2]}`,
+        apellido_materno: `${action.payload.profileObj.name.split(' ')[3]}`
+      }
+      localStorage.setItem('user', JSON.stringify(user))
       return { ...state, isAuthenticated: !state.isAuthenticated }
     default:
       return state
