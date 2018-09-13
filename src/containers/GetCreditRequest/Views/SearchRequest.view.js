@@ -1,5 +1,6 @@
 import React from 'react'
 import { Responsive, Container, Grid, Segment, Header, Form, Button, Table, Label, Message } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 const SearchRequestView = props => {
   console.log('props', props.searchResultByDate)
@@ -8,6 +9,11 @@ const SearchRequestView = props => {
       <Responsive>
         <Container>
           <Grid stackable>
+          <Grid.Row columns='1' textAlign='center'>
+            <Grid.Column>
+              <Button as={Link} to='/protected/dashboard' color='facebook'>Volver a la página principal</Button>
+            </Grid.Column>
+          </Grid.Row>
             <Grid.Row columns='2'>
               <Grid.Column>
                 <Segment raised textAlign='left'>

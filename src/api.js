@@ -18,7 +18,7 @@ class API {
     }
 
     static postCreditRequest(body){
-      return axios.post(`${REACT_APP_API_URL}/api/user`, body)
+      return axios.post(`${REACT_APP_API_URL}/api/user/create-request`, body)
     }
     
     static loginExecutive(body){

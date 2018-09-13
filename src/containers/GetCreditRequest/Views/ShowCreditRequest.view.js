@@ -1,6 +1,7 @@
 import React from 'react'
-import { Responsive, Container, Grid, Segment, Header, Card, Label} from 'semantic-ui-react'
+import { Responsive, Container, Grid, Segment, Header, Card, Label, Button} from 'semantic-ui-react'
 import { isEmpty } from 'lodash'
+import { Link } from 'react-router-dom'
 
 const ShowCreditRequestView = props => {
   console.log('show props', props)
@@ -14,6 +15,7 @@ const ShowCreditRequestView = props => {
               <Grid.Column>
                 <Segment raised>
                   <Header as='h2'>Solicitud de crédito</Header>
+                  <Button as={Link} to='/protected/dashboard' color='facebook'>Volver a la página principal</Button>
                   <Card fluid>
                     <Card.Content textAlign='left'>
                       <h3>

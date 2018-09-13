@@ -81,8 +81,8 @@ export class CreateCreditRequest extends Component {
       const { rut, dv } = this.cleanID(e.target.value)
       this.setState({
         ...this.state,
-        user: {
-          ...this.state.user,
+        credit: {
+          ...this.state.credit,
           rut,
           dv
         }
@@ -91,8 +91,8 @@ export class CreateCreditRequest extends Component {
     else if (e.target.name === 'fecha_nacimiento') {
       this.setState({
         ...this.state,
-        user: {
-          ...this.state.user,
+        credit: {
+          ...this.state.credit,
           [e.target.name]: moment(e.target.value).format('l')
         }
       })
@@ -100,8 +100,8 @@ export class CreateCreditRequest extends Component {
     else {
       this.setState({
         ...this.state,
-        user: {
-          ...this.state.user,
+        credit: {
+          ...this.state.credit,
           [e.target.name]: e.target.value
         }
       })
@@ -111,8 +111,8 @@ export class CreateCreditRequest extends Component {
     e.preventDefault()
     this.setState({
       ...this.state,
-      user: {
-        ...this.state.user,
+      credit: {
+        ...this.state.credit,
         sexo: e.target.textContent
       }
     })
@@ -122,8 +122,8 @@ export class CreateCreditRequest extends Component {
     
     this.setState({
       ...this.state,
-      user: {
-        ...this.state.user,
+      credit: {
+        ...this.state.credit,
         estado_civil: value
       }
     })
@@ -140,8 +140,8 @@ export class CreateCreditRequest extends Component {
     e.preventDefault()
     this.setState({
       ...this.state,
-      user:{
-        ...this.state.user,
+      credit:{
+        ...this.state.credit,
         comuna: value
       }
     })
@@ -150,8 +150,8 @@ export class CreateCreditRequest extends Component {
     e.preventDefault()
     this.setState({
       ...this.state,
-      user:{
-        ...this.state.user,
+      credit:{
+        ...this.state.credit,
         educacion: value
       }
     })
@@ -160,8 +160,8 @@ export class CreateCreditRequest extends Component {
     e.preventDefault()
     this.setState({
       ...this.state,
-      user:{
-        ...this.state.user,
+      credit:{
+        ...this.state.credit,
         renta: value
       }
     })
@@ -170,8 +170,8 @@ export class CreateCreditRequest extends Component {
     e.preventDefault()
     this.setState({
       ...this.state,
-      user:{
-        ...this.state.user,
+      credit:{
+        ...this.state.credit,
         enfermedad_cronica: 'si'
       }
     })
@@ -187,32 +187,25 @@ export class CreateCreditRequest extends Component {
   }
   onSubmit = e => {
     e.preventDefault()
-    const body = this.state.user
-    Joi.validate(this.state.user, userSchema, (err, value) => {
-      if(err !== null){
+    const body = { user: { ...this.state.credit } }
+    console.log('body', body)
+    console.log('erroSwal', this.state.errorSwal)
+    const id = uuid.v4()
+    body.user.id = id
+    body.user.role = 'user'
+    body.estado_solicitud = {
+      id: uuid.v4(),
+      estado_solicitud: 'PENDIENTE'
+    }
+    body.credito = {
+      id: uuid.v4()
+    }
+    this.props.postCreditRequest(body).then(() => {
+      if(this.props.credit.data.status === 200){
         this.setState({
-          errorSwal: !this.state.errorSwal
+          successSwal: true
         })
       }
-
-      const body = { user: { ...this.state.user } }
-      const id = uuid.v4()
-      body.user.id = id
-      body.user.role = 'user'
-      body.estado_solicitud = {
-        id: uuid.v4(),
-        estado_solicitud: 'PENDIENTE'
-      }
-      body.credito = {
-        id: uuid.v4()
-      }
-      this.props.postCreditRequest(body).then(() => {
-        if(this.props.credit.data.status === 200){
-          this.setState({
-            successSwal: true
-          })
-        }
-      })
     })
   }
   closeSuccessSwal = () => {

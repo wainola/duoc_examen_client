@@ -17,6 +17,7 @@ export const loginSchema = Joi.object().keys({
 })
 
 export const userSchema = Joi.object().keys({
+  id: Joi.string(),
   rut: Joi.string().max(8).required(),
   dv: Joi.string().required(),
   nombre: Joi.string().alphanum().min(3).required(),
@@ -33,5 +34,5 @@ export const userSchema = Joi.object().keys({
   educacion: Joi.string().required(),
   renta: Joi.string().required(),
   sueldo_liquido: Joi.string().required(),
-  enfermedad_cronica: Joi.string().required()
+  enfermedad_cronica: Joi.string()
 })
