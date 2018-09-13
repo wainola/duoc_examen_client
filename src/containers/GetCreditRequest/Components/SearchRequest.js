@@ -13,31 +13,37 @@ export class SearchRequest extends Component {
       rut: '',
       startDate: '',
       endDate: '',
-      searchResultByRut: []
+      searchResultByRut: [],
+      orderListByDate: [],
+      searchResultByDate: []
     }
   }
   componentWillMount(){
     this.props.getCreditData().then(() => {
-      console.log(this.props.credit.data[0].fecha_creacion)
+      this.setState({
+        orderListByDate: this.props.credit.data.map(item => ({
+          id: item.id, fecha_creacion: moment(item.fecha_creacion).format('YYYY-MM-DD')
+        }))
+      })
     })
   }
   onChange = e => {
     e.preventDefault()
-    console.log(e.target.value)
     this.setState({
       rut: e.target.value
     })
   }
   handleStartDate = e => {
     e.preventDefault()
+    console.log('startDate', moment(e.target.value).format('DD/MM/YYYY'))
     this.setState({
-      startDate: e.target.value
+      startDate: moment(e.target.value).format('YYYY-MM-DD')
     })
   }
   handleEndDate = e => {
     e.preventDefault()
     this.setState({
-      endDate: e.target.value
+      endDate: moment(e.target.value).format('YYYY-MM-DD')
     })
   }
   onSubmit = e => {
@@ -47,7 +53,7 @@ export class SearchRequest extends Component {
       this.searchByRut(this.state.rut)
     }
     if(this.state.startDate !== '' && this.state.endDate !== ''){
-      this.searchByDate(this.atate.startDate, this.state.endDate)
+      this.searchByDate(this.state.startDate, this.state.endDate)
     }
   }
   searchByRut = rut => {
@@ -56,6 +62,21 @@ export class SearchRequest extends Component {
       this.setState({
         searchResultByRut: searchResult
       })
+    }
+  }
+  searchByDate = (startDate, endDate) => {
+
+    if(this.props.credit.data){
+
+      const r = this.state.orderListByDate.filter(item => moment(item.fecha_creacion).isBetween(startDate, endDate)).map(item => item.id)
+
+      const rDefinitive = this.props.credit.data.filter((item, idx) => item.id === r[idx])
+
+      console.log('rDefinitive', rDefinitive)
+      this.setState({
+        searchResultByDate: rDefinitive
+      })
+      
     }
   }
   render() {
@@ -68,6 +89,7 @@ export class SearchRequest extends Component {
         handleEndDate={this.handleEndDate}
         onSubmit={this.onSubmit}
         searchResultByRut={this.state.searchResultByRut}
+        searchResultByDate={this.state.searchResultByDate}
         />
       </div>
     )

@@ -2,7 +2,7 @@ import React from 'react'
 import { Responsive, Container, Grid, Segment, Header, Form, Button, Table, Label, Message } from 'semantic-ui-react'
 
 const SearchRequestView = props => {
-  console.log('props', props.searchResultByRut)
+  console.log('props', props.searchResultByDate)
   return (
     <div>
       <Responsive>
@@ -25,7 +25,7 @@ const SearchRequestView = props => {
               <Grid.Column>
                 <Segment raised textAlign='left'>
                   <Header as='h3'>Búsqueda por fecha</Header>
-                  <Form>
+                  <Form onSubmit={props.onSubmit}>
                     <Form.Field>
                       <Form.Input type='date' label='Fecha de Inicio' onChange={props.handleStartDate} />
                     </Form.Field>
@@ -43,7 +43,7 @@ const SearchRequestView = props => {
               <Grid.Column>
                 <Segment raised>
                   <Header as='h3'>Resultado</Header>
-                  { props.searchResultByRut.length !== 0 ?
+                  { props.searchResultByRut.length !== 0 || props.searchResultByDate.length !== 0 ?
                   (
                     <Table celled selectable>
                       <Table.Header>
@@ -87,7 +87,10 @@ const SearchRequestView = props => {
                         </Table.Row>
                       </Table.Header>
                       <Table.Body>
-                        { props.searchResultByRut.map(item => 
+                        { 
+                          props.searchResultByRut.lengh !== 0 
+                          &&
+                          props.searchResultByRut.map(item => 
                           <Table.Row>
                             <Table.Cell>
                             {item.nombre} {item.apellido_paterno} {item.apellido_materno}
@@ -127,6 +130,50 @@ const SearchRequestView = props => {
                             </Table.Cell>
                           </Table.Row>
                           )}
+                          {
+                            props.searchResultByDate.length !== 0 
+                            && 
+                            props.searchResultByDate.map(item => 
+                              <Table.Row>
+                                <Table.Cell>
+                                {item.nombre} {item.apellido_paterno} {item.apellido_materno}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.correo}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.sexo === 'M' ? 'Masculino': 'Femenino'}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.estado_civil}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.hijos}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.telefono}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.direccion}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.comuna}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.educacion}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.renta}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.sueldo_liquido}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {item.enfermedad_cronica === 'no' ? <Label color='green' horizontal>Sin enfermedad Crónica</Label> : <Label color='red' horizontal>Con enfermedad crónica</Label> }
+                                </Table.Cell>
+                              </Table.Row>
+                              )
+                          }
                       </Table.Body>
                     </Table>
                   )
