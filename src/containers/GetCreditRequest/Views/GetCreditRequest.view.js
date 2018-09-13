@@ -11,6 +11,7 @@ const GetCreditRequestView = props => {
           <Grid.Column>
             <Header as='h3'>Estado de solicitudes</Header>
             <Button color='facebook' onClick={props.clickActionButtons} value='crear' as={Link} to='/protected/create-credit'>Crear solicitud de credito</Button>
+            <Button color='google plus' as={Link} to='/protected/executive/search-credit'>Buscar solicitud</Button>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
@@ -40,8 +41,8 @@ const GetCreditRequestView = props => {
                       <Table.Cell>{item.nombre}</Table.Cell>
                       <Table.Cell>{item.estado}</Table.Cell>
                       <Table.Cell>
-                        <Link to={`/protected/executive/show-credit-request/${item.id}`} onClick={() => props.sendCreditData(item)}>Ver</Link>
-                        <Button color='green' onClick={props.clickActionButtons} value='editar'>Editar</Button>
+                        <Button color='facebook' as={Link} to={`/protected/executive/show-credit-request/${item.id}`} onClick={() => props.sendCreditData(item)}>Ver</Button>
+                        <Button color='vk' as={Link} to={`/protected/executive/edit-credit/${item.id}`} onClick={() => props.sendToEdit(item)}>Editar</Button>
                         <Button color='red' onClick={props.clickActionButtons}value='eliminar'>Eliminar</Button>
                       </Table.Cell>
                     </Table.Row>

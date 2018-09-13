@@ -85,6 +85,8 @@ export class Router extends Component {
               
               <Protected location={location} exact path='/protected/executive/show-credit-request/:idRequest' component={ShowCreditRequest} />
 
+              <Protected location={location} exact path='/protected/executive/search-credit' component={SearchRequest} />
+
 
             </Sidebar.Pusher>
           </Sidebar.Pushable>
