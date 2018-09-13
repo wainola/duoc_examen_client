@@ -17,7 +17,7 @@ export class GetCreditRequest extends Component {
     console.log('this.props getCredit', this.props)
     let creditData
     if(!isEmpty(this.props.credit)){
-      creditData = this.props.credit.data
+      creditData = this.props.credit.data_to_display
     }
     const c = this.props.credit
     return (
