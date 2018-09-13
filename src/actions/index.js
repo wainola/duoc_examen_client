@@ -9,7 +9,8 @@ import {
   FAIL_POST_USER,
   REFRESH_AUTH,
   POST_CREDIT_REQUEST,
-  LOGIN_EXECUTIVE
+  LOGIN_EXECUTIVE,
+  CHANGE_LOGIN_STATUS
 } from './types'
 
 // GOOGLE LOGIN
@@ -23,6 +24,10 @@ export const logout = () => ({
 
 export const refreshAuth = () => ({
   type: REFRESH_AUTH
+})
+
+export const changeLoginStatus = () => ({
+  type: CHANGE_LOGIN_STATUS
 })
 
 // ASYNC ACTIONS AND THEIR DISPATCHERS
@@ -88,3 +93,8 @@ export const loginExecutive = body => dispatch => {
   return API.loginExecutive(body)
     .then(res => dispatch(successLoginExecutive({ data: res.data })))
 }
+
+export const successLoginExecutive = payload => ({
+  type: LOGIN_EXECUTIVE,
+  payload
+})

@@ -3,7 +3,7 @@ import ExecutiveView from '../Views/Executive.view'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { loginExecutive } from '../../../actions/index'
+import { loginExecutive, changeLoginStatus } from '../../../actions/index'
 
 export class Executive extends Component {
     constructor(props){
@@ -47,6 +47,12 @@ export class Executive extends Component {
         e.preventDefault()
         const body = { credentials: { ...this.state.user } }
         console.log('body to send', body)
+        this.props.loginExecutive(body).then(() => {
+          console.log('logeando executive', this.props)
+          if(this.props.executive.status === 200){
+            this.props.changeLoginStatus()
+          }
+        })
       }
       closeSwal = () => {
         this.setState({
@@ -56,7 +62,7 @@ export class Executive extends Component {
         })
       }
   render() {
-    console.log('executive this.prosp', this.props)  
+    console.log('executive this.props', this.props)  
     return (
       <div>
         <ExecutiveView 
@@ -76,7 +82,7 @@ function mapStateToProps({ executive }){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators( { loginExecutive }, dispatch )
+    return bindActionCreators( { loginExecutive, changeLoginStatus }, dispatch )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Executive)

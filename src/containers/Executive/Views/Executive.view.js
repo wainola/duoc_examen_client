@@ -1,5 +1,5 @@
 import React from 'react'
-import { Responsive, Container, Grid, Segment, Form, Button } from 'semantic-ui-react'
+import { Responsive, Container, Grid, Segment, Form, Button, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 import swal from 'sweetalert2'
@@ -22,6 +22,7 @@ const ExecutiveView = props => {
               <Grid.Column>
                 <Segment raised>
                   <Form onSubmit={props.onSubmit}>
+                    <Header as='h2'>Ingreso ejecutivos</Header>
                     <Form.Field>
                       <Form.Input type='text' name='rut' placeholder='11111111-1' label='Ingrese su rut' onChange={props.onChange}/>
                     </Form.Field>
