@@ -10,7 +10,8 @@ import {
   REFRESH_AUTH,
   POST_CREDIT_REQUEST,
   LOGIN_EXECUTIVE,
-  CHANGE_LOGIN_STATUS
+  CHANGE_LOGIN_STATUS,
+  SEND_CREDIT_TO_SHOW
 } from './types'
 
 // GOOGLE LOGIN
@@ -28,6 +29,11 @@ export const refreshAuth = () => ({
 
 export const changeLoginStatus = () => ({
   type: CHANGE_LOGIN_STATUS
+})
+
+export const sendDataToShow = payload => ({
+  type: SEND_CREDIT_TO_SHOW,
+  payload
 })
 
 // ASYNC ACTIONS AND THEIR DISPATCHERS

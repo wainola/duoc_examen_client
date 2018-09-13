@@ -24,6 +24,8 @@ import DashboardComp from '../containers/UserDashboard/index'
 
 import ExecutiveComponent from '../containers/Executive/index'
 import HomeExecutive from '../containers/Executive/Components/HomeExecutive'
+import SearchRequest from '../containers/GetCreditRequest/Components/SearchRequest'
+import ShowCreditRequest from '../containers/GetCreditRequest/Components/ShowCreditRequest'
 
 export class Router extends Component {
   constructor(props){
@@ -80,6 +82,8 @@ export class Router extends Component {
               <Protected location={location} exact path='/protected/edit-credit' component={EditCreditComp} />
 
               <Protected location={location} exact path='/protected/executive' component={HomeExecutive} />
+              
+              <Protected location={location} exact path='/protected/executive/show-credit-request/:idRequest' component={ShowCreditRequest} />
 
 
             </Sidebar.Pusher>

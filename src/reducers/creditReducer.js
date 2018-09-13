@@ -1,7 +1,8 @@
 import {
   GET_ALL_DATA,
   FAIL_GET_ALL_DATA,
-  POST_CREDIT_REQUEST
+  POST_CREDIT_REQUEST,
+  SEND_CREDIT_TO_SHOW
 } from '../actions/types'
 
 export default function(state = {}, action){
@@ -12,6 +13,8 @@ export default function(state = {}, action){
       return { ...state, status: action.payload.status }
     case POST_CREDIT_REQUEST:
       return { ...state, data: action.payload.data }
+    case SEND_CREDIT_TO_SHOW:
+      return { ...state, data: action.payload }
     default:
       return state
   }

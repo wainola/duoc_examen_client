@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {  bindActionCreators } from 'redux'
 import { isEmpty } from 'lodash'
 
-import { getCreditData } from '../../../actions/index'
+import { getCreditData, sendDataToShow } from '../../../actions/index'
 
 export class GetCreditRequest extends Component {
   constructor(props){
@@ -13,16 +13,23 @@ export class GetCreditRequest extends Component {
   componentWillMount(){
     this.props.getCreditData()
   }
+  sendCreditData = item => {
+    // e.preventDefault()
+    console.log('data')
+    this.props.sendDataToShow(item)
+  }
   render() {
     console.log('this.props getCredit', this.props)
     let creditData
     if(!isEmpty(this.props.credit)){
       creditData = this.props.credit.data_to_display
     }
-    const c = this.props.credit
     return (
       <div>
-        <GetCreditRequestView creditData={creditData}/>
+        <GetCreditRequestView 
+        creditData={creditData}
+        sendCreditData={this.sendCreditData}
+        />
       </div>
     )
   }
@@ -33,7 +40,7 @@ function mapStateToProps({ credit }){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ getCreditData }, dispatch)
+  return bindActionCreators({ getCreditData, sendDataToShow }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GetCreditRequest)

@@ -40,7 +40,7 @@ const GetCreditRequestView = props => {
                       <Table.Cell>{item.nombre}</Table.Cell>
                       <Table.Cell>{item.estado}</Table.Cell>
                       <Table.Cell>
-                        <Button color='blue' onClick={props.clickActionButtons}value='ver' data-item={item}>Ver</Button>
+                        <Link to={`/protected/executive/show-credit-request/${item.id}`} onClick={() => props.sendCreditData(item)}>Ver</Link>
                         <Button color='green' onClick={props.clickActionButtons} value='editar'>Editar</Button>
                         <Button color='red' onClick={props.clickActionButtons}value='eliminar'>Eliminar</Button>
                       </Table.Cell>
