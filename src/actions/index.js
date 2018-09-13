@@ -11,7 +11,8 @@ import {
   POST_CREDIT_REQUEST,
   LOGIN_EXECUTIVE,
   CHANGE_LOGIN_STATUS,
-  SEND_CREDIT_TO_SHOW
+  SEND_CREDIT_TO_SHOW,
+  DELETING_CREDIT_REQUEST
 } from './types'
 
 // GOOGLE LOGIN
@@ -102,5 +103,15 @@ export const loginExecutive = body => dispatch => {
 
 export const successLoginExecutive = payload => ({
   type: LOGIN_EXECUTIVE,
+  payload
+})
+
+export const deletingRequest = id => dispatch => {
+  return API.deleting(id)
+    .then(res => dispatch(successDeletingCredit({ data: res.data })))
+}
+
+export const successDeletingCredit = payload => ({
+  type: DELETING_CREDIT_REQUEST,
   payload
 })

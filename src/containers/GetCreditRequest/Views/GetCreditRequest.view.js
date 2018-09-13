@@ -43,7 +43,7 @@ const GetCreditRequestView = props => {
                       <Table.Cell>
                         <Button color='facebook' as={Link} to={`/protected/executive/show-credit-request/${item.id}`} onClick={() => props.sendCreditData(item)}>Ver</Button>
                         <Button color='vk' as={Link} to={`/protected/executive/edit-credit/${item.id}`} onClick={() => props.sendToEdit(item)}>Editar</Button>
-                        <Button color='red' onClick={props.clickActionButtons}value='eliminar'>Eliminar</Button>
+                        <Button color='red' value='eliminar' onClick={() => props.deleting(item.id)}>Eliminar</Button>
                       </Table.Cell>
                     </Table.Row>
                   )

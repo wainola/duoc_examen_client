@@ -24,6 +24,11 @@ class API {
     static loginExecutive(body){
       return axios.post(`${REACT_APP_API_URL}/api/login-executive`, body)
     }
+
+    static deleting(body){
+      console.log('id a borrar', body)
+      return axios.delete(`${REACT_APP_API_URL}/api/user`, { data: {body }})
+    }
 }
 
 export default API
