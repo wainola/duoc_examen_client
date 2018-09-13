@@ -4,10 +4,10 @@ import { flattenDeep } from 'lodash'
 import uuid from 'uuid'
 import moment from 'moment'
 import es from 'moment/locale/es'
-import CreateCreditView from '../Views/CreateCredit.view'
 import Joi from 'joi'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import CreateCreditView from '../Views/CreateCredit.view'
 
 import { userSchema } from '../../../validators/index'
 
@@ -71,12 +71,12 @@ export class CreateCreditRequest extends Component {
         enfermedad_cronica: 'no'
       },
       handleHijosWasTouched: false,
-      errorSwal: false
+      errorSwal: false,
+      successSwal: false
     }
   }
   onChange = e => {
     e.preventDefault()
-    console.log('e.target.value', moment(e.target.value).format('l'))
     if((e.target.name === 'rut') && (e.target.value.split('.').length === 3 || e.target.value.split('.').length === 1)){
       const { rut, dv } = this.cleanID(e.target.value)
       this.setState({
@@ -188,7 +188,6 @@ export class CreateCreditRequest extends Component {
   onSubmit = e => {
     e.preventDefault()
     const body = this.state.user
-    console.log('body to send', body)
     Joi.validate(this.state.user, userSchema, (err, value) => {
       if(err !== null){
         this.setState({
@@ -199,9 +198,28 @@ export class CreateCreditRequest extends Component {
       const body = { user: { ...this.state.user } }
       const id = uuid.v4()
       body.user.id = id
+      body.user.role = 'user'
+      body.estado_solicitud = {
+        id: uuid.v4(),
+        estado_solicitud: 'PENDIENTE'
+      }
+      body.credito = {
+        id: uuid.v4()
+      }
       this.props.postCreditRequest(body).then(() => {
-        console.log('posting credit request', this.props.credit)
+        if(this.props.credit.data.status === 200){
+          this.setState({
+            successSwal: true
+          })
+        }
       })
+    })
+  }
+  closeSuccessSwal = () => {
+    this.setState({
+      successSwal: !this.state.successSwal
+    }, () => {
+      this.props.history.push('/protected/dashboard')
     })
   }
   closeSwalError = () => {
@@ -211,6 +229,7 @@ export class CreateCreditRequest extends Component {
   }
   render() {
     console.log('this.props', this.props)
+    console.log('connect', bindActionCreators)
     return (
       <div>
         <CreateCreditView 
@@ -230,6 +249,8 @@ export class CreateCreditRequest extends Component {
           handleEnfermedad={this.handleEnfermedad}
           errorSwal={this.state.errorSwal}
           closeSwalError={this.closeSwalError}
+          successSwal={this.state.successSwal}
+          closeSuccessSwal={this.closeSuccessSwal}
         />
       </div>
     )
@@ -243,4 +264,5 @@ function mapStateToProps({ credit }){
 function mapDispatchToProps(dispatch){
   return bindActionCreators({ postCreditRequest }, dispatch)
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(CreateCreditRequest)

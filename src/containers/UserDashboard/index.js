@@ -1,7 +1,7 @@
 import React from 'react'
 import Dashboard from './Components/Dashboard'
 
-const DashboardComponent = () => {
+const DashboardComponent = props => {
   return (
     <div>
       <Dashboard />

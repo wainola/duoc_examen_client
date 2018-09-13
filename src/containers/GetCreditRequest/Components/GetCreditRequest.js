@@ -11,6 +11,7 @@ export class GetCreditRequest extends Component {
     this.props.logout()
   }
   render() {
+    console.log('this.props getCredit', this.props)
     return (
       <div>
         <GetCreditRequestView handleLogin={this.handleLogin}/>

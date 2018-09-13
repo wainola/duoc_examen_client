@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import DashboardView from '../Views/Dashboard.view'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { postCreditRequest } from '../../../actions/index'
 
 export class Dashboard extends Component {
   constructor(props){
@@ -24,7 +28,7 @@ export class Dashboard extends Component {
     }
   }
   render() {
-    // console.log(JSON.parse(localStorage.getItem('user')))
+    console.log('dashboard', this.props)
     return (
       <div>
         <DashboardView user={this.state.user}/>
@@ -33,4 +37,12 @@ export class Dashboard extends Component {
   }
 }
 
-export default Dashboard
+function mapStateToProps({ credit }){
+  return { credit }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ postCreditRequest }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

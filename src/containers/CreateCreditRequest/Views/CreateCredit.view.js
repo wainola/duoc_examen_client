@@ -123,6 +123,12 @@ const CreateCreditView = props => {
                     onConfirm={() => props.closeSwalError()}
                     type={'error'}
                     />
+                    <SweetAlert 
+                    show={props.successSwal}
+                    title={'Éxito en ingresar su solicitud de cŕedito'}
+                    onConfirm={() => props.closeSuccessSwal()}
+                    type={'success'}
+                    />
                 </Segment>
               </Grid.Column>
             </Grid.Row>
