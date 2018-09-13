@@ -23,12 +23,14 @@ const DashboardView = props => {
                       Sesión iniciada el {moment().format('LL')}</span>
                     </Card.Meta>
                   </Card.Content>
-                  <Card.Content extra>
-                    <a>
-                      <Icon name='credit card alternative' />
-                      Numero de creditos
-                    </a>
-                  </Card.Content>
+                  { props.userLogged && (
+                    <Card.Content extra>
+                      <a>
+                        <Icon name='credit card alternative' />
+                        Numero de creditos
+                      </a>
+                    </Card.Content>
+                  )}
                 </Card>
               </Segment>
             </Grid.Column>
