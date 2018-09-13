@@ -3,6 +3,7 @@ import { Grid, Header, Button, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 const GetCreditRequestView = props => {
+  console.log('props', props)
   return (
     <div>
       <Grid verticalAlign='middle' textAlign='center' column='1'>
@@ -32,8 +33,8 @@ const GetCreditRequestView = props => {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {props.creditData !== undefined ? 
-                  props.creditData.usuarios.map(item => 
+                {props.creditData instanceof Array ? 
+                  props.creditData.map(item => 
                     <Table.Row>
                       <Table.Cell>{item.rut}</Table.Cell>
                       <Table.Cell>{item.nombre}</Table.Cell>

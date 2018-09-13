@@ -2,30 +2,38 @@ import React, { Component } from 'react'
 import GetCreditRequestView from '../Views/GetCreditRequest.view';
 import { connect } from 'react-redux'
 import {  bindActionCreators } from 'redux'
+import { isEmpty } from 'lodash'
 
-import { logout } from '../../../actions/index'
+import { getCreditData } from '../../../actions/index'
 
 export class GetCreditRequest extends Component {
-  handleLogin = e => {
-    e.preventDefault()
-    this.props.logout()
+  constructor(props){
+    super(props)
+  }
+  componentWillMount(){
+    this.props.getCreditData()
   }
   render() {
     console.log('this.props getCredit', this.props)
+    let creditData
+    if(!isEmpty(this.props.credit)){
+      creditData = this.props.credit.data
+    }
+    const c = this.props.credit
     return (
       <div>
-        <GetCreditRequestView handleLogin={this.handleLogin}/>
+        <GetCreditRequestView creditData={creditData}/>
       </div>
     )
   }
 }
 
-function mapStateToProps({ auth }){
-  return { auth }
+function mapStateToProps({ credit }){
+  return { credit }
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ logout }, dispatch)
+  return bindActionCreators({ getCreditData }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GetCreditRequest)

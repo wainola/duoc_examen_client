@@ -7,7 +7,7 @@ import {
 export default function(state = {}, action){
   switch(action.type){
     case GET_ALL_DATA:
-      return { ...state, data: action.payload.data, status: action.payload.status }
+      return { ...state, data: action.payload.data.all_user_data, status: action.payload.status }
     case FAIL_GET_ALL_DATA:
       return { ...state, status: action.payload.status }
     case POST_CREDIT_REQUEST:
