@@ -2,6 +2,10 @@ import React from 'react'
 import { Grid, Form, Checkbox, Header, Dropdown , Segment, Button } from 'semantic-ui-react'
 
 const EditCreditView = props => {
+  console.log('props', props)
+  const { creditToEdit: { id } } = props.creditToEdit !== undefined ? props : {}
+  const creditOnForm = props.dataToDisplay.filter(item => item.id === id)
+  console.log('creditOnForm', creditOnForm)
   return (
     <div>
       <Grid>

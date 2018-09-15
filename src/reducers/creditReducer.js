@@ -3,7 +3,8 @@ import {
   FAIL_GET_ALL_DATA,
   POST_CREDIT_REQUEST,
   SEND_CREDIT_TO_SHOW,
-  DELETING_CREDIT_REQUEST
+  DELETING_CREDIT_REQUEST,
+  SEND_DATA_TO_EDIT
 } from '../actions/types'
 
 export default function(state = {}, action){
@@ -18,6 +19,8 @@ export default function(state = {}, action){
       return { ...state, data: action.payload }
     case DELETING_CREDIT_REQUEST:
       return { ...state, data: action.payload }
+    case SEND_DATA_TO_EDIT:
+      return { ...state, data_received: { ...action.payload } }
     default:
       return state
   }

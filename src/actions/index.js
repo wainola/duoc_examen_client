@@ -12,7 +12,8 @@ import {
   LOGIN_EXECUTIVE,
   CHANGE_LOGIN_STATUS,
   SEND_CREDIT_TO_SHOW,
-  DELETING_CREDIT_REQUEST
+  DELETING_CREDIT_REQUEST,
+  SEND_DATA_TO_EDIT
 } from './types'
 
 // GOOGLE LOGIN
@@ -35,6 +36,11 @@ export const changeLoginStatus = () => ({
 
 export const sendDataToShow = payload => ({
   type: SEND_CREDIT_TO_SHOW,
+  payload
+})
+
+export const sendDataToEdit = payload => ({
+  type: SEND_DATA_TO_EDIT,
   payload
 })
 

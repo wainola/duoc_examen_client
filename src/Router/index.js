@@ -78,7 +78,7 @@ export class Router extends Component {
 
               <Protected location={location} exact path='/protected/create-credit' component={CreateCredit} />
               
-              <Protected location={location} exact path='/protected/edit-credit' component={EditCreditComp} />
+              <Protected location={location} exact path='/protected/executive/edit-credit/:idCredit' component={EditCreditComp} />
 
               <Protected location={location} exact path='/protected/executive' component={HomeExecutive} />
               

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {  bindActionCreators } from 'redux'
 import { isEmpty } from 'lodash'
 
-import { getCreditData, sendDataToShow, deletingRequest } from '../../../actions/index'
+import { getCreditData, sendDataToShow, deletingRequest, sendDataToEdit } from '../../../actions/index'
 
 export class GetCreditRequest extends Component {
   constructor(props){
@@ -12,12 +12,15 @@ export class GetCreditRequest extends Component {
     this.state = {
       deleted: false
     }
-  }
+  }send
   componentWillMount(){
     this.props.getCreditData()
   }
   sendCreditData = item => {
     this.props.sendDataToShow(item)
+  }
+  sendToEdit = item => {
+    this.props.sendDataToEdit(item)
   }
   deleting = id => {
     const body = { user: {
@@ -49,6 +52,7 @@ export class GetCreditRequest extends Component {
         deleting={this.deleting}
         deleted={this.state.deleted}
         closeSwal={this.closeSwal}
+        sendToEdit={this.sendToEdit}
         />
       </div>
     )
@@ -60,7 +64,7 @@ function mapStateToProps({ credit }){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ getCreditData, sendDataToShow, deletingRequest }, dispatch)
+  return bindActionCreators({ getCreditData, sendDataToShow, deletingRequest, sendDataToEdit }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GetCreditRequest)

@@ -28,7 +28,7 @@ const LoginView = props => {
                       <Form.Input type='text' name='rut' placeholder='11111111-1' label='Ingrese su rut' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
-                      <Form.Input type='password' name='password' placeholder='my password' label='Ingrese su contraseña' onChange={props.onChange}/>
+                      <Form.Input type='text' name='password' placeholder='my password' label='Ingrese su contraseña' onChange={props.onChange}/>
                     </Form.Field>
                     <Form.Field>
                       <Button color='facebook'>Ingresar</Button>

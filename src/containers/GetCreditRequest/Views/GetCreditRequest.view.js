@@ -7,6 +7,7 @@ import { withSwalInstance } from 'sweetalert2-react'
 const SweetAlert = withSwalInstance(swal)
 
 const GetCreditRequestView = props => {
+  console.log('props getCredit', props)
   return (
     <div>
       <Grid verticalAlign='middle' textAlign='center' column='1'>
