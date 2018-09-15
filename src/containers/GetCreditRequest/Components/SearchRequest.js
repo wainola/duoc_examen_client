@@ -58,6 +58,7 @@ export class SearchRequest extends Component {
   searchByRut = rut => {
     if(this.props.credit.data){
       const searchResult = this.props.credit.data.filter(item => item.rut === rut.split('.').join(''))
+      console.log('searchRut', rut.split('.').join(''))
       this.setState({
         searchResultByRut: searchResult
       })
